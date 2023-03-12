@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
-// import { selectCurrentUser } from "../redux/slices/user/userSlice";
-import { Outlet } from "react-router-dom";
-// import Error from "../pages/Error";
+import { Navigate, Outlet } from "react-router-dom";
+import { selectCurrentUser } from "../store/slices/userSlice";
 
 const PublicRoute = () => {
-  // const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
-  // return currentUser ? <Error /> : <Outlet />;
+  return currentUser ? <Navigate to={"/404"} /> : <Outlet />;
 };
 
 export default PublicRoute;

@@ -1,0 +1,21 @@
+@import "../../../assets/sass/variables";
+
+.search {
+  background: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding-left: 15px;
+  transition: padding-right 0.1s ease-in;
+  color: $app-theme2;
+
+  &::placeholder {
+    color: $header-input-plc-color;
+    font-weight: bold;
+  }
+
+  &:focus {
+    padding-right: 70px;
+  }
+}

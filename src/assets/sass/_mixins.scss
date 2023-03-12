@@ -1,0 +1,29 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button(
+  $width, 
+  $padding, 
+  $color, 
+  $bg, 
+  $hoverBg, 
+  $focusBg, 
+  $focusBoxShadow
+) {
+  width: $width;
+  padding: $padding;
+  color: $color;
+  background: $bg;
+
+  &:hover {
+    background: $hoverBg;
+  }
+
+  &:focus {
+    background: $focusBg;
+    box-shadow: $focusBoxShadow;
+  }
+}

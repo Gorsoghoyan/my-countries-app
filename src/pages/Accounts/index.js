@@ -1,4 +1,5 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
+import { db } from "../../lib/firebase";
 
 function Accounts() {
   const barev = useLoaderData();
@@ -13,10 +14,13 @@ function Accounts() {
 
 export default Accounts;
 
-export const dataLoader = async () => {
-  await setTimeout(() => {
+export const loader = async () => {
+  try {
+  } catch {
 
-  }, [4000]);
+  }
+}
 
-  return "Barev";
+export const action = async () => {
+
 }

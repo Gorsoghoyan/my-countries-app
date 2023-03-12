@@ -1,0 +1,150 @@
+@import "../../assets/sass/variables";
+
+.container {
+  min-height: 100vh;
+  display: flex;
+
+  .left {
+    width: calc(100% - 500px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: flex-end;
+
+    .description {
+      width: 100%;
+      padding: 60px 60px 45px;
+      font-size: 18px;
+      letter-spacing: 0.25px;
+      z-index: 20;
+      font-weight: 300;
+      background: linear-gradient(
+        to bottom, rgba(0, 0, 0, 0) 0, #000 100%
+      );
+
+      h4 {
+        color: $app-theme2;
+        margin-bottom: 7.5px;
+        font-size: 34px;
+        font-weight: normal;
+      }
+
+      p {
+        color: $auth-paragraph-color;
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .right {
+    width: 500px;
+    padding: 60px;
+    margin-left: auto;
+    background: $auth-right-bg;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 13px;
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      .leftPart p {
+        margin-top: 5px;
+        font-size: 15px;
+        font-weight: 400;
+        color: $auth-color-rgb;
+      }
+
+      .loginIcon {
+        font-size: 70px;
+        font-weight: 700;
+        color: $auth-gray-600;
+      }
+    }
+
+    .registerTitle {
+      color: $app-theme2;
+      font-size: 33px;
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+
+    .registerText {
+      color: $auth-register-text-color;
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    .footText {
+      color: $auth-gray-600;
+      text-align: center;
+    }
+
+    .forgot {
+      margin-top: 20px;
+      color: $auth-primary-rgb;
+      font-size: 13.3px;
+    }
+
+    hr {
+      margin: 0.9375rem 0;
+      color: #adb5bd;
+      border: 0;
+      border-top: 1px solid;
+      opacity: 0.4;
+    }
+  }
+
+  .linkText {
+    color: $auth-color-rgb;
+    margin: 15px 0 50px 0;
+
+    a {
+      color: $auth-primary-rgb;
+    }
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  .container {
+    .left {
+      width: calc(100% - 400px);
+
+      .textBlock {
+        padding: 40px 40px 30px;
+
+        h4 {
+          font-size: 28px;
+        }
+
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .right {
+      width: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .container {
+    .left {
+      display: none;
+    }
+
+    .right {
+      width: 100%;
+      padding: 40px;
+    }
+  }
+}

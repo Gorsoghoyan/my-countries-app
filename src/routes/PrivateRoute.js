@@ -1,22 +1,21 @@
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
-// import { selectCurrentUser } from "../redux/slices/user/userSlice";
-import { Outlet } from "react-router-dom";
-// import Header from "../components/Header";
-// import SideBar from "../components/SideBar";
-// import Error from "../pages/Error";
+import { Navigate, Outlet } from "react-router-dom";
+import { selectCurrentUser } from "../store/slices/userSlice";
+import Header from "../layouts/Header";
 
 const PrivateRoute = () => {
-  // const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
-  // return currentUser ? (
-  //   <>
-  //     <Header />
-  //     <SideBar />
-  //     <Outlet />
-  //   </>
-  // ) : (
-  //   <Error />
-  // );
+  return currentUser ? (
+    <Fragment>
+      <Header />
+      {/* <SideBar /> */}
+      <Outlet />
+    </Fragment>
+  ) : (
+    <Navigate to={"/404"} />
+  );
 };
 
 export default PrivateRoute;

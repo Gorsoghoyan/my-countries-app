@@ -1,0 +1,73 @@
+@use "../../../assets/sass/mixins";
+@import "../../../assets/sass/variables";
+
+.default {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: background-color .2s linear;
+  cursor: pointer;
+}
+
+// auth
+.a-l,
+.a-r {
+  height: 45px;
+  border-radius: 5px;
+  font-size: 15p;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.a-r {
+  @include mixins.button(
+    100%,
+    0,
+    $app-theme2, 
+    $darkBlue-btn-bg, 
+    $darkBlue-btn-hover-color,
+    $darkBlue-btn-hover-color,
+    $darkBlue-btn-focus-box-shadow
+  );
+}
+
+.a-l {
+  @include mixins.button(
+    100%,
+    0,
+    $app-theme2, 
+    $blue-btn-bg, 
+    $blue-btn-hover-color, 
+    $blue-btn-hover-color, 
+    $blue-btn-focus-box-shadow
+  );
+}
+
+// error page
+.e {
+  @include mixins.button(
+    90px, 
+    10px, 
+    $app-theme2, 
+    $blue-btn-bg, 
+    $blue-btn-hover-color, 
+    $blue-btn-hover-color, 
+    $blue-btn-focus-box-shadow
+  );
+}
+
+// header search
+.h-s {
+  height: 100%;
+  font-size: 18px;
+  padding: 0 10px;
+  @include mixins.flex-center;
+  transition: color 0.1s ease;
+  background: transparent;
+  color: $search-icon-btn-color;
+  cursor: pointer;
+  &:hover {
+    color: $app-theme2;
+  }
+}

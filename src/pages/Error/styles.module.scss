@@ -1,0 +1,69 @@
+@import "../../assets/sass/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background: #2d353c;
+
+  .errorCode,
+  .errorContent {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .errorCode {
+    align-items: flex-end;
+    background: $body-bg;
+    color: $app-theme2;
+
+    span {
+      font-size: 200px;
+      line-height: 1;
+      text-shadow: 10px 10px 0 rgba($app-theme2, .2);
+    }
+  }
+
+  .errorContent {
+    background: url(../../assets/images/error-page-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    h2 {
+      color: $app-theme2;
+      font-size: 27px;
+      letter-spacing: 1.2;
+      margin-top: 10px;
+      font-weight: 100;
+    }
+
+    p {
+      color: rgba($app-theme2, .5);
+      letter-spacing: .5px;
+      margin: 10px 0 15px 0;
+      font-size: 14px;
+      font-weight: 100;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container 
+  .errorCode 
+  span {
+    font-size: 160px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .container 
+  .errorCode 
+  span {
+    font-size: 120px;
+  }
+}

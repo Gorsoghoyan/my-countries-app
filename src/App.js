@@ -1,15 +1,13 @@
-import { Fragment } from "react";
+import { Suspense } from "react";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./routes";
+import { router } from "./routes/router";
+import PageLoading from "./components/ui/PageLoading";
 
 function App() {
   return (
-    <Fragment>
-      <RouterProvider 
-        router={router} 
-        // fallbackElement={}
-      />  
-    </Fragment>
+    <Suspense fallback={<PageLoading />}>
+      <RouterProvider router={router} />
+    </Suspense>
   );
 }
 

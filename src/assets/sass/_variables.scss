@@ -1,0 +1,47 @@
+// app themes
+$app-theme1: #00acac;
+$app-theme2: #FFFFFF;
+
+// body
+$body-font-family: Open Sans, sans-serif;
+$body-font-size: 0.75rem;
+$body-font-weight: 400;
+$body-line-height: 1.5;
+$body-color: #dee2e6;
+$body-bg: #161a1d;
+
+// auth
+$auth-right-bg: #2d353c;
+$auth-paragraph-color: #bcbcbcd9;
+$auth-register-text-color: rgb(255, 255, 255, .65);
+$auth-input-focus-border-color: #348fe2;
+$auth-input-border-color: #495057;
+$auth-color-rgb: rgb(255, 255, 255, .5);
+$auth-hr-color: #adb5bd;
+$auth-gray-600: rgb(108, 117, 125);
+$auth-primary-rgb: rgb(52, 143, 226);
+
+// header
+$header-height: 50px;
+$header-mobile-height: 100px;
+$header-bg: #262d33;
+$header-color: #FFFFFF;
+$header-form-bg: #1b1f24;
+$header-form-border-coler: #1b1f24;
+
+// logo
+$logo-silver: rgba(255, 255, 255, 0.638);
+
+// buttons
+$blue-btn-bg: #00acac;
+$blue-btn-hover-color: #008181;
+$blue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($blue-btn-hover-color, .5);
+$darkBlue-btn-bg: #348fe2;
+$darkBlue-btn-hover-color: #276baa;
+$darkBlue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($darkBlue-btn-hover-color, .5);
+$search-icon-btn-color: #343a3f;
+
+// inputs
+$header-input-plc-color: #656565;
+
+:export {}
