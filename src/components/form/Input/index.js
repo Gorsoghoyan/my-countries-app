@@ -5,9 +5,12 @@ const Input = forwardRef((
   {
     variant,
     type,
-    placeholder,
     name,
     value,
+    defaultValue,
+    placeholder,
+    autoFocus,
+    required,
     onChange
   }, ref
 ) => {
@@ -18,7 +21,10 @@ const Input = forwardRef((
       type={type}
       name={name}
       value={value}
+      defaultValue={defaultValue}
       placeholder={placeholder}
+      required={required}
+      autoFocus={autoFocus}
       onChange={onChange}
     />
   );

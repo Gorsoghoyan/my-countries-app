@@ -1,6 +1,8 @@
 @import "../../../assets/sass/variables";
 
-.search {
+
+// header search block
+.s {
   background: transparent;
   outline: none;
   border: none;
@@ -17,5 +19,21 @@
 
   &:focus {
     padding-right: 70px;
+  }
+}
+
+// reset and forget
+.r-f {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid silver;
+  color: black;
+  background: transparent;
+
+  &::placeholder {
+    font-size: 16px;
   }
 }

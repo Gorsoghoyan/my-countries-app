@@ -36,9 +36,62 @@
       justify-content: space-between;
       height: 32px;
       min-width: 220px;
+      margin-right: 25px;
       border-radius: 30px;
       background: $header-form-bg;
       border: $header-form-border-coler; 
+    }
+
+    .dropDownLink {
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: $app-theme2;
+      cursor: pointer;
+
+      .displayName {
+        margin: 0 2px 0 10px;
+        font-weight: 500;
+      }
+
+      svg {
+        font-size: 20px;
+      }
+
+      .dropDown {
+        display: flex;
+        flex-direction: column;
+        visibility: hidden;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        opacity: 0;
+        padding: 8px 0;
+        min-width: 160px;
+        border-radius: 4px;
+        transition: opacity 0.1s ease;
+        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+        background: $header-navbar-dropdown-bg;
+        cursor: auto;
+        &.open {
+          opacity: 1;
+          visibility: visible;
+        }
+    
+        a {
+          text-decoration: none;
+          color: $app-theme2;
+          font-size: 12px;
+          white-space: nowrap;
+          font-weight: 400;
+          padding: 8px 12px;
+          color: $header-navbar-dropdown-link-color;
+          &:hover {
+            background: $header-navbar-dropdown-hover-bg;
+          }
+        }
+      }
     }
   }
 }

@@ -21,6 +21,9 @@ $auth-hr-color: #adb5bd;
 $auth-gray-600: rgb(108, 117, 125);
 $auth-primary-rgb: rgb(52, 143, 226);
 
+// forgot and reset
+$forgotReset-back-blue-bg: rgba(0, 0, 255, 0.724);
+
 // header
 $header-height: 50px;
 $header-mobile-height: 100px;
@@ -28,6 +31,9 @@ $header-bg: #262d33;
 $header-color: #FFFFFF;
 $header-form-bg: #1b1f24;
 $header-form-border-coler: #1b1f24;
+$header-navbar-dropdown-bg: #495057;
+$header-navbar-dropdown-link-color: rgba(255, 255, 255, 0.85);
+$header-navbar-dropdown-hover-bg: #6c757d;
 
 // logo
 $logo-silver: rgba(255, 255, 255, 0.638);
@@ -44,4 +50,6 @@ $search-icon-btn-color: #343a3f;
 // inputs
 $header-input-plc-color: #656565;
 
-:export {}
+:export {
+  forgotResetBlue: $forgotReset-back-blue-bg;
+}

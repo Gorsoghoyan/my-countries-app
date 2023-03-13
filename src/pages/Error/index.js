@@ -1,14 +1,14 @@
 import { 
   ERROR_CODE_NUMBER, 
   ERROR_TITLE, 
-  ERROR_PAGE_BTN 
+  ERROR_PAGE_BTN, 
+  ERROR_PATH_TEXT
 } from "../../utils/constants";
-import { useNavigate, useRouteError } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import s from "./styles.module.scss";
 
 function Error() {
-  const error = useRouteError();
   const navigate = useNavigate();
 
   return (
@@ -18,7 +18,7 @@ function Error() {
       </div>
       <div className={s.errorContent}>
         <h2>{ERROR_TITLE}</h2>
-        <p>{error.data}</p>
+        <p>{ERROR_PATH_TEXT + document.location.pathname}</p>
         <Button
           variant="e"
           onClick={() => navigate(-1)}

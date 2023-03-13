@@ -14,7 +14,7 @@ const PrivateRoute = () => {
       <Outlet />
     </Fragment>
   ) : (
-    <Navigate to={"/404"} />
+    <Navigate to={"/404"} replace />
   );
 };
 

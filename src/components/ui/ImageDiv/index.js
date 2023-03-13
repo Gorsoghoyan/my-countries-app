@@ -2,7 +2,7 @@
 function ImageDiv({
   width,
   height,
-  url,
+  image,
   size = "cover",
   position = "center",
   repeat = "no-repeat",
@@ -13,7 +13,7 @@ function ImageDiv({
       width,
       height,
       borderRadius,
-      backgroundImage: `url(${url})`,
+      backgroundImage: `url(${image})`,
       backgroundPosition: position,
       backgroundSize: size,
       backgroundRepeat: repeat

@@ -5,7 +5,7 @@ import { selectCurrentUser } from "../store/slices/userSlice";
 const PublicRoute = () => {
   const currentUser = useSelector(selectCurrentUser);
 
-  return currentUser ? <Navigate to={"/404"} /> : <Outlet />;
+  return currentUser ? <Navigate to={"/404"} replace /> : <Outlet />;
 };
 
 export default PublicRoute;

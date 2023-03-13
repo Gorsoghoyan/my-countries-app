@@ -1,4 +1,12 @@
-import { ACCOUNTS, COUNTRIES, DASHBOARD, LOGIN, REGISTER } from "../utils/constants";
+import { 
+  ACCOUNTS, 
+  COUNTRIES, 
+  DASHBOARD, 
+  FORGOT_PASSWORD, 
+  LOGIN, 
+  REGISTER, 
+  RESET_PASSWORD
+} from "../utils/constants";
 
 import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
@@ -13,12 +21,16 @@ const ErrorPage = lazy(() => import("../pages/Error"));
 const AccountsPage = lazy(() => import("../pages/Accounts"));
 const DashboardPage = lazy(() => import("../pages/Dashboard"));
 const CountriesPage = lazy(() => import("../pages/Countries"));
+const ForgotResetPasswordPage = lazy(() => import("../pages/ForgotResetPassword"));
 
 export const router = createBrowserRouter([
   {
     index: true,
-    element: <RootRoute />,
-    errorElement: <ErrorPage />
+    element: <RootRoute />
+  },
+  {
+    path: "*",
+    element: <ErrorPage />
   },
   {
     element: <PrivateRoute />,
@@ -57,7 +69,15 @@ export const router = createBrowserRouter([
       {
         path: REGISTER.PATH,
         element: <AuthPage type="register" />
+      },
+      {
+        path: FORGOT_PASSWORD.PATH,
+        element: <ForgotResetPasswordPage type="forgot" />
+      },
+      {
+        path: RESET_PASSWORD.PATH,
+        element: <ForgotResetPasswordPage type="reset" />
       }
     ]
-  }
+  },
 ]);

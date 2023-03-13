@@ -7,9 +7,9 @@ const RootRoute = () => {
   const currentUser = useSelector(selectCurrentUser);
 
   return currentUser ? (
-    <Navigate to={DASHBOARD.LINK} />
+    <Navigate to={DASHBOARD.LINK} replace />
   ) : (
-    <Navigate to={LOGIN.LINK} />
+    <Navigate to={LOGIN.LINK} replace />
   );
 };
 

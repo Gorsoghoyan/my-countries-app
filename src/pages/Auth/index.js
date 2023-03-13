@@ -2,10 +2,11 @@ import {
   ADMIN_APP,
   BOLD_TEXT,
   FOOT_TEXT,
-  FORGOT_PASSWORD,
   LEFT_PART,
   REGISTER_TEXT,
-  REGISTER_TITLE
+  FORGOT_PASSWORD_LINK,
+  REGISTER_TITLE,
+  FORGOT_PASSWORD,
 } from "../../utils/constants";
 import { login, register } from "./config";
 import { FiLogIn } from "react-icons/fi";
@@ -49,8 +50,8 @@ function Auth({ type }) {
           btnVariant={current.btnVariant}
         />
         {type === "login" && (
-          <Link to="/forgot-password" className={s.forgot}>
-            {FORGOT_PASSWORD}
+          <Link to={FORGOT_PASSWORD.LINK} className={s.forgot}>
+            {FORGOT_PASSWORD_LINK}
           </Link>
         )}
         {current.linkText} <hr />
