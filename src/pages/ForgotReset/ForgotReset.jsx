@@ -1,22 +1,19 @@
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import { ToastContainer } from "react-toastify";
 import { BACK_TO_LOGIN, LOGIN } from "../../utils/constants";
-
-import ImageDiv from "../../components/ui/ImageDiv";
-import Spinner from "../../components/ui/Spinner";
 import useForgotReset from "./useForgotReset";
-import Input from "../../components/form/Input";
-import Button from "../../components/ui/Button";
-import ErrorMessage from "../../components/ui/ErrorMessage";
-
+import Input from "../../components/form/Input/Input";
+import Button from "../../components/ui/Button/Button";
+import Spinner from "../../components/ui/Spinner/Spinner";
+import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
+import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
 import v from "../../assets/sass/_variables.scss";
 import s from "./styles.module.scss";
+import "react-toastify/dist/ReactToastify.css";
 
-function ForgotResetPassword({ type }) {
+function ForgotReset({ type }) {
   const { current, inputRef, loading, error, handleSubmit } = useForgotReset(type);
 
   return (
@@ -66,4 +63,4 @@ function ForgotResetPassword({ type }) {
   );
 }
 
-export default ForgotResetPassword;
+export default ForgotReset;

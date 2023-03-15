@@ -8,12 +8,12 @@ import {
   REGISTER_TITLE,
   FORGOT_PASSWORD,
 } from "../../utils/constants";
-import { login, register } from "./config";
-import { FiLogIn } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { FiLogIn } from "react-icons/fi";
+import { login, register } from "./config";
 import AuthForm from "./AuthForm";
-import Logo from "../../components/ui/Logo";
+import Logo from "../../components/ui/Logo/Logo";
 import s from "./styles.module.scss";
 
 function Auth({ type }) {
@@ -54,7 +54,8 @@ function Auth({ type }) {
             {FORGOT_PASSWORD_LINK}
           </Link>
         )}
-        {current.linkText} <hr />
+        <p className={s.linkText}>{current.linkContent}</p>
+        <hr />
         <p className={s.footText}>{FOOT_TEXT}</p>
       </div>
     </main>

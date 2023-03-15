@@ -16,12 +16,12 @@ import LayoutRoute from "./LayoutRoute";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 
-const AuthPage = lazy(() => import("../pages/Auth"));
-const ErrorPage = lazy(() => import("../pages/Error"));
-const AccountsPage = lazy(() => import("../pages/Accounts"));
-const DashboardPage = lazy(() => import("../pages/Dashboard"));
-const CountriesPage = lazy(() => import("../pages/Countries"));
-const ForgotResetPasswordPage = lazy(() => import("../pages/ForgotResetPassword"));
+const Auth = lazy(() => import("../pages/Auth/Auth"));
+const Error = lazy(() => import("../pages/Error/Error"));
+const Accounts = lazy(() => import("../pages/Accounts/Accounts"));
+const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
+const Countries = lazy(() => import("../pages/Countries/Countries"));
+const ForgotReset = lazy(() => import("../pages/ForgotReset/ForgotReset"));
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <ErrorPage />
+    element: <Error />
   },
   {
     element: <PrivateRoute />,
@@ -41,15 +41,15 @@ export const router = createBrowserRouter([
           {
             index: true,
             path: DASHBOARD.PATH,
-            element: <DashboardPage />,
+            element: <Dashboard />,
           },
           {
             path: ACCOUNTS.PATH,
-            element: <AccountsPage />
+            element: <Accounts />
           },
           {
             path: COUNTRIES.PATH,
-            element: <CountriesPage />,
+            element: <Countries />,
           },
           {
             path: "Profile",
@@ -64,19 +64,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: LOGIN.PATH,
-        element: <AuthPage type="login" />
+        element: <Auth type="login" />
       },
       {
         path: REGISTER.PATH,
-        element: <AuthPage type="register" />
+        element: <Auth type="register" />
       },
       {
         path: FORGOT_PASSWORD.PATH,
-        element: <ForgotResetPasswordPage type="forgot" />
+        element: <ForgotReset type="forgot" />
       },
       {
         path: RESET_PASSWORD.PATH,
-        element: <ForgotResetPasswordPage type="reset" />
+        element: <ForgotReset type="reset" />
       }
     ]
   },

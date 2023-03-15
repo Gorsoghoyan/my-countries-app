@@ -2,7 +2,7 @@
   width: 20px;
   height: 20px;
   border: 3px solid #dddddd;
-  border-top-color: transparent;
+  border-top-color: transparent !important;
   border-radius: 50%;
   animation: loading .8s ease infinite;
   margin: auto;

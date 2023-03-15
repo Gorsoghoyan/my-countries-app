@@ -95,3 +95,41 @@
     }
   }
 }
+
+@media screen and (max-width: 767px) {
+  .container {
+    height: $header-mobile-height;
+    display: block;
+
+    .logoPart {
+      height: $header-height;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .menuBurger {
+        display: block;
+      }
+    }
+
+    .navbar {
+      height: $header-height;
+      justify-content: space-between;
+
+      .form {
+        width: 80%;
+      }
+      
+      .dropDownLink {
+
+        .displayName {
+          display: none;
+        }
+
+        svg {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

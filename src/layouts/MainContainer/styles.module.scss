@@ -1,17 +1,17 @@
 @import "../../assets/sass/variables";
 
-// .mainContainer {
-//   position: relative;
-//   margin-top: $--app-header-height;
-//   margin-left: $--app-sidebar-width;
-//   min-height: calc(100vh - $--app-header-height);
-//   transition: margin-left 0.1s ease;
-// }
+.mainContainer {
+  position: relative;
+  margin-top: $header-height;
+  margin-left: $sidebar-width;
+  min-height: $page-min-height;
+  transition: margin-left 0.1s ease;
+}
 
-// @media screen and (max-width: 767px) {
-//   .layout {
-//     margin-top: $--app-header-mobile-height;
-//     margin-left: 0;
-//     min-height: calc(100vh - $--app-header-mobile-height);
-//   }
-// }
+@media screen and (max-width: 767px) {
+  .layout {
+    margin-top: $header-mobile-height;
+    margin-left: 0;
+    min-height: calc(100vh - $header-mobile-height);
+  }
+}

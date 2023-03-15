@@ -5,7 +5,7 @@ import {
   ERROR_PATH_TEXT
 } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/ui/Button";
+import Button from "../../components/ui/Button/Button";
 import s from "./styles.module.scss";
 
 function Error() {

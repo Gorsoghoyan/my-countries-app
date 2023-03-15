@@ -1,12 +1,12 @@
+import { MdOutlineArrowDropDown } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineSearch } from "react-icons/ai";
-import { MdOutlineArrowDropDown } from "react-icons/md";
 import { dropDownConfig } from "./config";
 import profilePhoto from "../../assets/images/profile.webp";
-import ImageDiv from "../../components/ui/ImageDiv";
-import Input from "../../components/form/Input";
-import Button from "../../components/ui/Button";
-import Logo from "../../components/ui/Logo";
+import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
+import Input from "../../components/form/Input/Input";
+import Button from "../../components/ui/Button/Button";
+import Logo from "../../components/ui/Logo/Logo";
 import DropDownItem from "./DropDownItem";
 import useHeader from "./useHeader";
 import s from "./styles.module.scss";
@@ -20,7 +20,8 @@ function Header() {
     openDropDown,
     toggleDropDown,
     onGoHome,
-    handleDropDownClick
+    handleDropDownClick,
+    handleToggleSidebar
   } = useHeader();
 
   return (
@@ -32,7 +33,10 @@ function Header() {
           cursor={"pointer"}
           onClick={onGoHome}
         />
-        <RxHamburgerMenu className={s.menuBurger} />
+        <RxHamburgerMenu 
+          onClick={() => handleToggleSidebar()} 
+          className={s.menuBurger} 
+        />
       </div>
       <nav className={s.navbar}>
         <form className={s.form}>

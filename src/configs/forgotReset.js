@@ -1,5 +1,5 @@
-import forgotImage from "../../assets/images/forgot-password.avif";
-import resetImage from "../../assets/images/reset-password.avif";
+import forgotImage from "../assets/images/forgot-password.avif";
+import resetImage from "../assets/images/reset-password.avif";
 
 export const forgotConfig = {
   image: forgotImage,

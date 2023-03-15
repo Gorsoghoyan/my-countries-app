@@ -1,7 +1,7 @@
-import InputLabel from "../../components/form/InputLabel";
-import ErrorMessage from "../../components/ui/ErrorMessage";
-import Button from "../../components/ui/Button";
-import Spinner from "../../components/ui/Spinner";
+import InputLabel from "../../components/form/InputLabel/InputLabel";
+import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
+import Button from "../../components/ui/Button/Button";
+import Spinner from "../../components/ui/Spinner/Spinner";
 import useAuthForm from "./useAuthForm";
 
 function AuthForm({ type, inputs, initialData, btnText, btnVariant }) {

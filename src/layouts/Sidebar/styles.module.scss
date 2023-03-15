@@ -1,0 +1,106 @@
+@import "../../assets/sass/variables";
+
+.container {
+  width: $sidebar-width;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+  background: $sidebar-bg;
+  margin-top: $header-height;
+  z-index: 900;
+  transition: left 0.1s ease;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #adb5bd;
+    border-radius: 10px;
+  }
+  &.open {
+    left: 0;
+  }
+
+  .topContainer {
+    position: relative;
+    background: url(../../assets/images/navigation.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $app-theme2;
+    padding: 20px;
+    font-size: 16px;
+    z-index: -2;
+    cursor: pointer;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $sidebar-profile-bg;
+      z-index: -1;
+      transition: all 0.5s ease;
+    }
+    &:hover {
+      &::before {
+        background: $sidebar-profile-bg-hover;
+      }
+    }
+
+    p {
+      margin-top: 13px;
+      font-size: 14px;
+    }
+  }
+
+  .navigationContainer {
+    h3 {
+      color: $sidebar-menu-header-color;
+      font-family: $font-monospace;
+      padding: 15px 20px 10px 20px;
+      line-height: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .navItem {
+      padding: 15px 20px;
+      line-height: 20px;
+      display: block;
+      text-decoration: none;
+      color: $sidebar-component-color-rgb;
+      font-size: 13.5px;
+      display: flex;
+      align-items: center;
+      &:hover {
+        color: $app-theme2;
+      }
+
+      &.active {
+        background-color: $app-theme1;
+        background-image: $sidebar-bs-gradient;
+        color: $app-theme2;
+
+        svg {
+          color: $sidebar-component-active-color;
+        }
+      }
+
+      svg {
+        font-size: 16px;
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    left: -$sidebar-width;
+    margin-top: 0;
+    z-index: 2000;
+  }
+}

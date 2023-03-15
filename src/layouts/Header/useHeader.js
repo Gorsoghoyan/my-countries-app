@@ -5,6 +5,7 @@ import { selectCurrentUser, userLogout } from "../../store/slices/userSlice";
 import { DASHBOARD, LOGIN } from "../../utils/constants";
 import useToggle from "../../hooks/useToggle";
 import useClickOutSide from "../../hooks/useClickOutSide";
+import { selectSideBarOpen, toggleSideBar } from "../../store/slices/sidebarSlice";
 
 const useHeader = () => {
   const [openDropDown, toggleDropDown] = useToggle(false);
@@ -12,6 +13,7 @@ const useHeader = () => {
   const inputRef = useRef(null);
   const clickRef = useClickOutSide(() => toggleDropDown(false));
   const currentUser = useSelector(selectCurrentUser);
+  const sidebarOpen = useSelector(selectSideBarOpen); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,6 +32,11 @@ const useHeader = () => {
     }
   };
 
+  const handleToggleSidebar = () => {
+    if (sidebarOpen) return;
+    setTimeout(() => dispatch(toggleSideBar(true)), 0);
+  };
+
   return {
     inputRef,
     clickRef,
@@ -37,7 +44,8 @@ const useHeader = () => {
     openDropDown,
     toggleDropDown,
     onGoHome,
-    handleDropDownClick
+    handleDropDownClick,
+    handleToggleSidebar
   };
 };
 
