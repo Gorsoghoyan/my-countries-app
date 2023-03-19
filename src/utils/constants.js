@@ -25,3 +25,6 @@ export const FORGOT_PASSWORD_LINK = "Forgot password?";
 
 // forgot and reset
 export const BACK_TO_LOGIN = "Back to login";
+
+// sidebar
+export const NAVIGATION = "Navigation";

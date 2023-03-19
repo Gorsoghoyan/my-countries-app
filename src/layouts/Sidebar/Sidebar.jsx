@@ -1,4 +1,5 @@
 import { navigations } from "./config";
+import { NAVIGATION } from "../../utils/constants";
 import useSidebar from "./useSidebar";
 import NavigationItem from "./NavigationItem";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
@@ -16,14 +17,14 @@ function Sidebar() {
     >
       <div className={s.topContainer}>
         <ImageDiv 
-          width={40} 
-          height={40} 
+          width={36} 
+          height={36} 
           image={currentUser?.photoURL || profileDefault} 
         />
         <p>{currentUser?.displayName}</p>
       </div>
       <div className={s.navigationContainer}>
-        <h3>Navigation</h3>
+        <h3>{NAVIGATION}</h3>
         {navigations.map((item, index) => (
           <NavigationItem
             key={index}
