@@ -1,0 +1,44 @@
+@import "../../../../assets/sass/variables";
+
+.container {
+  .select,
+  .info,
+  .arrows {
+    margin: 0 20px;
+  }
+
+  .select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-size: 14px;
+      cursor: default;
+    }
+  }
+
+  .info {
+    font-size: 14px;
+
+    span {
+      margin: 0 3px;
+
+      &:nth-child(2) {
+        margin: 0 6px;
+      }
+    }
+  }
+
+  .arrows {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .select,
+  .info,
+  .arrows {
+    margin: 0 10px;
+  }
+}

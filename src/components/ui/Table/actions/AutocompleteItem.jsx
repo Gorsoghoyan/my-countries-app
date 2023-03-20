@@ -1,8 +1,13 @@
 
-function AutocompleteItem() {
-
+function AutocompleteItem({ optionName, onClick, background, cursor, className }) {
   return (
-    <div></div>
+    <div
+      className={className}
+      style={{ background, cursor }}
+      onClick={onClick}
+    >
+      {optionName}
+    </div>
   );
 }
 

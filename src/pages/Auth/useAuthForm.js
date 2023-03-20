@@ -84,20 +84,9 @@ const useAuthForm = (type, initialData) => {
     e.preventDefault();
     
     if (type === "login") {
-      loginUser(
-        userData,
-        setLoading,
-        setError,
-        dispatch,
-        navigate
-      );
+      loginUser(userData);
     } else {
-      registerUser(
-        userData,
-        setLoading,
-        setError,
-        navigate
-      );
+      registerUser(userData);
     }
   };
 

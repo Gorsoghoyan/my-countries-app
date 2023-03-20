@@ -1,5 +1,5 @@
 import { MdOutlineDashboard, MdManageAccounts } from "react-icons/md";
-import { ACCOUNTS, COUNTRIES, DASHBOARD, PROFILE } from "../../utils/constants";
+import { ACCOUNTS, COUNTRIES, DASHBOARD, PROFILE } from "../utils/constants";
 import { RiEarthFill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 

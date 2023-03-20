@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser, userLogout } from "../../store/slices/userSlice";
 import { DASHBOARD, LOGIN } from "../../utils/constants";
+import { selectCurrentUser, userLogout } from "../../store/slices/userSlice";
+import { selectSideBarOpen, toggleSideBar } from "../../store/slices/sidebarSlice";
 import useToggle from "../../hooks/useToggle";
 import useClickOutSide from "../../hooks/useClickOutSide";
-import { selectSideBarOpen, toggleSideBar } from "../../store/slices/sidebarSlice";
 
 const useHeader = () => {
   const [openDropDown, toggleDropDown] = useToggle(false);

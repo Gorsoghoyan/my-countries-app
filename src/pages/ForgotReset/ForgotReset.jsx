@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
-import { BACK_TO_LOGIN, LOGIN } from "../../utils/constants";
+import { LOGIN } from "../../utils/constants";
 import useForgotReset from "./useForgotReset";
 import Input from "../../components/form/Input/Input";
 import Button from "../../components/ui/Button/Button";
@@ -41,8 +41,7 @@ function ForgotReset({ type }) {
             {loading ? <Spinner /> : current.button.text}
           </Button>
           <Link to={LOGIN.LINK} className={s.loginLink}>
-            <IoIosArrowBack />
-            {BACK_TO_LOGIN}
+            <IoIosArrowBack />Back to login
           </Link>
         </form>
       </main>

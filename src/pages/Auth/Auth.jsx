@@ -1,17 +1,13 @@
-import {
-  ADMIN_APP,
-  BOLD_TEXT,
-  FOOT_TEXT,
-  LEFT_PART,
-  REGISTER_TEXT,
-  FORGOT_PASSWORD_LINK,
-  REGISTER_TITLE,
-  FORGOT_PASSWORD,
+import { 
+  FOOT_TEXT, 
+  REGISTER_TEXT, 
+  LEFT_PART, 
+  FORGOT_PASSWORD 
 } from "../../utils/constants";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
-import { login, register } from "./config";
+import { login, register } from "../../configs/auth";
 import AuthForm from "./AuthForm";
 import Logo from "../../components/ui/Logo/Logo";
 import s from "./styles.module.scss";
@@ -23,7 +19,7 @@ function Auth({ type }) {
     <main className={s.container}>
       <div className={s.left} style={current.styles}>
         <div className={s.description}>
-          <h4><b>{BOLD_TEXT}</b> {ADMIN_APP}</h4>
+          <h4><b>Countries</b> Admin App</h4>
           <p>{current.text}</p>
         </div>
       </div>
@@ -38,7 +34,7 @@ function Auth({ type }) {
           </div>
         ) : (
           <Fragment>
-            <h2 className={s.registerTitle}>{REGISTER_TITLE}</h2>
+            <h2 className={s.registerTitle}>Sign Up</h2>
             <p className={s.registerText}>{REGISTER_TEXT}</p>
           </Fragment>
         )}
@@ -51,7 +47,7 @@ function Auth({ type }) {
         />
         {type === "login" && (
           <Link to={FORGOT_PASSWORD.LINK} className={s.forgot}>
-            {FORGOT_PASSWORD_LINK}
+            Forgot password?
           </Link>
         )}
         <p className={s.linkText}>{current.linkContent}</p>

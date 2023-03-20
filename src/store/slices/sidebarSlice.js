@@ -9,7 +9,6 @@ export const sidebarSlice = createSlice({
   initialState,
   reducers: {
     toggleSideBar: (state, action) => {
-      console.log(action.payload)
       state.open = action.payload;
     },
   },

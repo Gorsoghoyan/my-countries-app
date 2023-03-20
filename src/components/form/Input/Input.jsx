@@ -11,6 +11,7 @@ const Input = forwardRef((
     placeholder,
     autoFocus,
     required,
+    readOnly,
     onChange
   }, ref
 ) => {
@@ -24,6 +25,7 @@ const Input = forwardRef((
       defaultValue={defaultValue}
       placeholder={placeholder}
       required={required}
+      readOnly={readOnly}
       autoFocus={autoFocus}
       onChange={onChange}
     />

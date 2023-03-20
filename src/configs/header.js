@@ -1,4 +1,4 @@
-import { LOGIN, PROFILE } from "../../utils/constants";
+import { LOGIN, PROFILE } from "../utils/constants";
 
 export const dropDownConfig = [
   {

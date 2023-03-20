@@ -24,6 +24,14 @@ $auth-primary-rgb: rgb(52, 143, 226);
 // forgot and reset
 $forgotReset-back-blue-bg: rgba(0, 0, 255, 0.724);
 
+// accounts
+$accounts-error-color: #ffffff7e;
+$accounts-delete-icon-color: #ff6767;
+
+// autocomplete
+$autocomplete-item-bg: "#1976d21";
+$autocomplete-no-item-bg: "#c7c7c7";
+
 // header
 $header-height: 50px;
 $header-mobile-height: 100px;
@@ -45,6 +53,12 @@ $sidebar-component-color-rgb: rgb(255,255,255,.6);
 $sidebar-component-active-color: #3b3f44;
 $sidebar-bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 
+// users table
+$users-table-top-bg: #ffffff1a;
+$users-table-body-bg: #2d353c;
+$users-table-bg: #2d353c;
+$users-table-border-color: #495057;
+
 // logo
 $logo-silver: rgba(255, 255, 255, 0.638);
 
@@ -56,6 +70,8 @@ $darkBlue-btn-bg: #348fe2;
 $darkBlue-btn-hover-color: #276baa;
 $darkBlue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($darkBlue-btn-hover-color, .5);
 $search-icon-btn-color: #343a3f;
+$add-user-btn-bg: #009797;
+$add-user-btn-hover-bg: #008989;
 
 // inputs
 $header-input-plc-color: #656565;
@@ -68,4 +84,7 @@ $page-min-height: calc(100vh - $header-height);
 
 :export {
   forgotResetBlue: $forgotReset-back-blue-bg;
+  errorColor: $accounts-error-color;
+  itemBg: $autocomplete-item-bg;
+  noItemBg: $autocomplete-no-item-bg;
 }

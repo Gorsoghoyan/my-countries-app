@@ -1,9 +1,8 @@
-import { navigations } from "./config";
-import { NAVIGATION } from "../../utils/constants";
+import { navigations } from "../../configs/sidebar";
 import useSidebar from "./useSidebar";
 import NavigationItem from "./NavigationItem";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
-import profileDefault from "../../assets/images/profile.webp"
+import profileDefault from "../../assets/images/profile.png"
 import s from "./styles.module.scss";
 import c from "classnames";
 
@@ -24,7 +23,7 @@ function Sidebar() {
         <p>{currentUser?.displayName}</p>
       </div>
       <div className={s.navigationContainer}>
-        <h3>{NAVIGATION}</h3>
+        <h3>Navigation</h3>
         {navigations.map((item, index) => (
           <NavigationItem
             key={index}

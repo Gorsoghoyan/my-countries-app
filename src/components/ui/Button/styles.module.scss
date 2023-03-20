@@ -71,3 +71,55 @@
     color: $app-theme2;
   }
 }
+
+// accounts table
+.add-user {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background: $add-user-btn-bg;
+  color: $app-theme2;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background: $add-user-btn-hover-bg;
+  }
+}
+
+// pagination
+.p {
+  font-size: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $app-theme2;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(192, 192, 192, 0.059);
+  }
+
+  &:disabled {
+    color: rgb(139, 139, 139);
+    cursor: auto;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &:nth-child(1) {
+    margin-right: 15px;
+  }
+}

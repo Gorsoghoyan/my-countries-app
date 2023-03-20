@@ -1,8 +1,8 @@
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineSearch } from "react-icons/ai";
-import { dropDownConfig } from "./config";
-import profilePhoto from "../../assets/images/profile.webp";
+import { dropDownConfig } from "../../configs/header";
+import profilePhoto from "../../assets/images/profile.png";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import Input from "../../components/form/Input/Input";
 import Button from "../../components/ui/Button/Button";
