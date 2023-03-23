@@ -51,11 +51,14 @@ const useAutoComplete = (
   const handleItemClick = (e, option) => {
     e.stopPropagation();
     setOpen(false);
+    
     if (searchedUser) return;
     handleSearchedUser(true);
+
     startTransition(() => {
       setValue(getOptionLabel(option));
     });
+
     onChange(e, option);
   }
 

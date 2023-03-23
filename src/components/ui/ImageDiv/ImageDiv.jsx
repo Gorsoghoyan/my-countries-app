@@ -1,5 +1,7 @@
+import s from "./styles.module.scss";
 
 function ImageDiv({
+  variant,
   width,
   height,
   image,
@@ -10,7 +12,7 @@ function ImageDiv({
   margin
 }) {
   return (
-    <div style={{
+    <div className={s[variant]} style={{
       width,
       height,
       margin,

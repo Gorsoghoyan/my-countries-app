@@ -5,7 +5,7 @@ import registerImage from "../assets/images/registerImage.jpg"
 
 export const register = {
   text: "As a Countries Admin app administrator, you use the Countries Admin console to manage your organization’s account, such as add new users, manage security settings, and turn on the services you want your team to access.",
-  linkContent: `Already a member? Click ${<Link to={LOGIN.LINK}>here</Link>} to login.`,
+  linkContent: <>Already a member? Click <Link to={LOGIN.LINK}>here</Link> to login.</>,
   styles: {
     backgroundImage: `url(${registerImage})`,
     backgroundPosition: "50%",
@@ -51,7 +51,7 @@ export const register = {
 
 export const login = {
   text: "Download the Countries Admin app for iPhone®, iPad®, and Android™. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  linkContent: `Not a member yet? Click ${<Link to={REGISTER.LINK}>here</Link>} to register.`,
+  linkContent: <>Not a member yet? Click <Link to={REGISTER.LINK}>here</Link> to register.</>,
   styles: {
     backgroundImage: `url(${loginImage})`,
     backgroundPosition: "50%",

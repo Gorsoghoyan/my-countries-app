@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../lib/firebase";
-import { userLogin } from "../../store/slices/userSlice";
+import { setUser } from "../../store/slices/userSlice";
 import { DASHBOARD, LOGIN } from "../../utils/constants";
 import { getFullName } from "../../utils/getFullName";
 
@@ -36,14 +36,20 @@ const useAuthForm = (type, initialData) => {
       );
       
       if (docSnap.exists()) {
-        dispatch(userLogin(docSnap.data()));
+        dispatch(setUser({
+          ...docSnap.data(),
+          createdAt: { ...docSnap.data().createdAt }
+        }));
       } else {
         const docSnap = await getDoc(
           doc(db, "subUsers", userCredential.user.uid)
         );
   
         if (docSnap.exists()) {
-          dispatch(userLogin(docSnap.data()));
+          dispatch(setUser({
+            ...docSnap.data(),
+            createdAt: { ...docSnap.data().createdAt }
+          }));
         } 
       }
   
@@ -66,9 +72,10 @@ const useAuthForm = (type, initialData) => {
       );
   
       await setDoc(doc(db, "users", userCredential.user.uid), {
+        id: userCredential.user.uid,
         displayName: getFullName(firstName, lastName),
-        photoURL: "",
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
+        photoURL: ""
       });
   
       setError("");

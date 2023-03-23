@@ -18,6 +18,7 @@ import PrivateRoute from "./PrivateRoute";
 
 const Auth = lazy(() => import("../pages/Auth/Auth"));
 const Error = lazy(() => import("../pages/Error/Error"));
+const Profile = lazy(() => import("../pages/Profile/Profile"));
 const Accounts = lazy(() => import("../pages/Accounts/Accounts"));
 const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
 const Countries = lazy(() => import("../pages/Countries/Countries"));
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
           {
             index: true,
             path: DASHBOARD.PATH,
-            element: <Dashboard />,
+            element: <Dashboard />
           },
           {
             path: ACCOUNTS.PATH,
@@ -50,11 +51,11 @@ export const router = createBrowserRouter([
           },
           {
             path: COUNTRIES.PATH,
-            element: <Countries />,
+            element: <Countries />
           },
           {
             path: "Profile",
-            // element: <ProfilePage />
+            element: <Profile />
           }
         ]
       }

@@ -2,7 +2,7 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineSearch } from "react-icons/ai";
 import { dropDownConfig } from "../../configs/header";
-import profilePhoto from "../../assets/images/profile.png";
+import defaultPhoto from "../../assets/images/profile.png";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import Input from "../../components/form/Input/Input";
 import Button from "../../components/ui/Button/Button";
@@ -16,6 +16,7 @@ function Header() {
   const {
     inputRef,
     clickRef,
+    photoURL,
     currentUser,
     openDropDown,
     toggleDropDown,
@@ -55,7 +56,11 @@ function Header() {
           className={s.dropDownLink} 
           onClick={() => toggleDropDown()}
         >
-          <ImageDiv width={30} height={30} image={profilePhoto} />
+          <ImageDiv 
+            width={30} 
+            height={30} 
+            image={photoURL || defaultPhoto} 
+          />
           <p className={s.displayName}>{currentUser?.displayName}</p>
           <MdOutlineArrowDropDown />
           <div className={c(s.dropDown, { [s.open]: openDropDown })}>

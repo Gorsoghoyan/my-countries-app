@@ -1,21 +1,28 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DASHBOARD, LOGIN } from "../../utils/constants";
-import { selectCurrentUser, userLogout } from "../../store/slices/userSlice";
+import { selectCurrentUser, deleteUser } from "../../store/slices/userSlice";
 import { selectSideBarOpen, toggleSideBar } from "../../store/slices/sidebarSlice";
 import useToggle from "../../hooks/useToggle";
 import useClickOutSide from "../../hooks/useClickOutSide";
 
 const useHeader = () => {
+  const [photoURL, setPhotoURL] = useState("");
   const [openDropDown, toggleDropDown] = useToggle(false);
 
   const inputRef = useRef(null);
   const clickRef = useClickOutSide(() => toggleDropDown(false));
   const currentUser = useSelector(selectCurrentUser);
   const sidebarOpen = useSelector(selectSideBarOpen); 
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!currentUser) return;
+    setPhotoURL(currentUser.photoURL);
+  }, [currentUser]);
 
   const onGoHome = () => {
     navigate(DASHBOARD.LINK);
@@ -27,7 +34,7 @@ const useHeader = () => {
     toggleDropDown();
 
     if (type === "logout") {
-      dispatch(userLogout());
+      dispatch(deleteUser());
       navigate(LOGIN.LINK);
     }
   };
@@ -40,6 +47,7 @@ const useHeader = () => {
   return {
     inputRef,
     clickRef,
+    photoURL,
     currentUser,
     openDropDown,
     toggleDropDown,

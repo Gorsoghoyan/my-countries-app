@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { collection, endBefore, getDocs, limit, limitToLast, orderBy, query, startAfter, startAt } from "firebase/firestore";
+import { 
+  collection, endBefore, getDocs, limit, 
+  limitToLast, orderBy, query, startAfter, startAt 
+} from "firebase/firestore";
 import { db } from "../../lib/firebase";
 
 const useAccountsList = () => {
