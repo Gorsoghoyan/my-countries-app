@@ -1,92 +1,67 @@
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
-import { db, storage } from "../../lib/firebase";
-import { 
-  selectCollection, 
-  selectCurrentUser, 
-  setUser 
-} from "../../store/slices/userSlice";
+import { uploadImageAPI } from "../../utils/api";
+import { selectCurrentUser, setUser } from "../../store/slices/userSlice";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { db } from "../../lib/firebase";
 
 const useProfile = () => {
-  const [photoURL, setPhotoURL] = useState(""); 
-  const [error, setError] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
   const [perc, setPerc] = useState(null);
-  
+  const [error, setError] = useState("");
+
   const currentUser = useSelector(selectCurrentUser);
-  const collection = useSelector(selectCollection);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!currentUser || !collection) return;
+    if (!currentUser) return;
 
-    const unsubUser = onSnapshot(doc(db, collection, currentUser.id), (doc) => {
-      if (!doc.metadata.hasPendingWrites) return;
-      dispatch(setUser({ 
-        ...doc.data(), 
-        createdAt: { ...doc.data().createdAt } 
-      }));
-    }); 
+    const unsub = onSnapshot(
+      doc(db, "users", currentUser.id),
+      (doc) => {
+        if (!doc.metadata.hasPendingWrites) return;
+        dispatch(setUser({
+          ...doc.data(),
+          createdAt: { ...doc.data().createdAt }
+        }));
+      });
 
-    return () => {
-      unsubUser();
-    };
+    return () => unsub();
   }, []);
 
   useEffect(() => {
-    if (!currentUser) return;
-    setPhotoURL(currentUser.photoURL);
-  }, [currentUser]);
-  
-  const updateUserPhotoURL = async (downloadURL) => {
-    if (!currentUser || !collection) return;
+    if (!photoURL) return;
 
-    try {
-      await updateDoc(doc(db, collection, currentUser.id), {
-        photoURL: downloadURL
-      });
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
-  const uploadFile = (file) => {
-    const name = new Date().getTime() + file.name;
-    const storageRef = ref(storage, name);
-
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadTask.on('state_changed', 
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setPerc(progress);
-        switch (snapshot.state) {
-          case 'paused':
-            break;
-          case 'running':
-            break;
-          default : break;
-        }
-      }, 
-      (error) => {
-        setError(error);
-      }, 
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          updateUserPhotoURL(downloadURL);
+    const updateUserPhotoURL = async (photoURL) => {
+      try {
+        await updateDoc(doc(db, "users", currentUser.id), {
+          photoURL
         });
+      } catch (error) {
+        setError(error.message);
       }
-    );
-  };
+    };
+
+    updateUserPhotoURL(photoURL);
+  }, [photoURL]);
+
+  useEffect(() => {
+    if (!error) return;
+    toast.error(error);
+  }, [error]);
 
   const handleFileChange = (file) => {
     if (!file) return;
-    uploadFile(file);
+    uploadImageAPI({
+      file,
+      setError,
+      setPerc,
+      setPhotoURL
+    });
   };
 
   return {
-    error,
     perc,
     photoURL,
     currentUser,

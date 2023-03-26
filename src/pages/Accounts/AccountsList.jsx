@@ -2,15 +2,15 @@ import {
   Autocomplete, Pagination, Paper, Stack, Table, TableBody, 
   TableBodyCell, TableContainer, TableHead, TableHeadCell, TableRow 
 } from "../../components/ui/Table";
+import { MdModeEditOutline, MdDelete } from "react-icons/md";
+import { AiOutlinePlus } from "react-icons/ai";
+import { columns } from "../../configs/accounts";
 import Button from "../../components/ui/Button/Button";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
 import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
 import defaultAvatar from "../../assets/images/profile.png";
 import useAccountsList from "./useAccountsList";
-import { MdModeEditOutline, MdDelete } from "react-icons/md";
-import { AiOutlinePlus } from "react-icons/ai";
-import { columns } from "../../configs/accounts";
 import v from "../../assets/sass/_variables.scss";
 import s from "./styles.module.scss";
 

@@ -28,6 +28,11 @@ $forgotReset-back-blue-bg: rgba(0, 0, 255, 0.724);
 $accounts-error-color: #ffffff7e;
 $accounts-delete-icon-color: #ff6767;
 
+// countries
+$country-item-footer-bg: #2d353c;
+$country-item-id-bg: rgb(32 37 42 / 85%);
+$country-item-text-color: rgba(255, 255, 255, .75);
+
 // profile
 $profile-user-image-bg: #2d353c;
 
@@ -74,7 +79,11 @@ $darkBlue-btn-hover-color: #276baa;
 $darkBlue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($darkBlue-btn-hover-color, .5);
 $search-icon-btn-color: #343a3f;
 $add-user-btn-bg: #009797;
+$add-country-btn-bg: #009797;
 $add-user-btn-hover-bg: #008989;
+$upload-btn-color: #343a3f;
+$upload-btn-bg: #ffd900;
+$upload-btn-hover-bg: #bfa300;
 
 // inputs
 $header-input-plc-color: #656565;

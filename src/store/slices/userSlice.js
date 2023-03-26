@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentUser: JSON.parse(localStorage.getItem("user")) || null,
-  collection: localStorage.getItem("collection") || null
+  currentUser: JSON.parse(localStorage.getItem("user")) || null
 };
 
 export const userSlice = createSlice({
@@ -11,10 +10,6 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, { payload }) => {
       localStorage.setItem("user", JSON.stringify(payload));
-      const collection = payload.permissions ? "subUsers" : "users";
-      localStorage.setItem("collection", collection);
-
-      state.collection = collection;
       state.currentUser = payload;
     },
     deleteUser: (state) => {
@@ -25,7 +20,6 @@ export const userSlice = createSlice({
 });
 
 export const selectCurrentUser = (state) => state.user.currentUser;
-export const selectCollection = (state) => state.user.collection;
 
 export const { setUser, deleteUser } = userSlice.actions;
 

@@ -1,0 +1,21 @@
+@import "../../../assets/sass/variables";
+
+.fileUpload {
+  input {
+    display: none;
+  }
+}
+
+.p {
+  border: none;
+  outline: none;
+  padding: 5px 6px;
+  font-size: 12px;
+  border-radius: 2px;
+  color: $upload-btn-color;
+  background: $upload-btn-bg;
+
+  &:hover {
+    background: $upload-btn-hover-bg;
+  }
+}

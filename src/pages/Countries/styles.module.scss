@@ -1,0 +1,165 @@
+@import "../../assets/sass/variables";
+
+.container {
+  position: relative;
+  padding: 20px 30px;
+  overflow-x: hidden;
+
+  .countriesList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 20px;
+    gap: 15px;
+  }
+
+  .getMore {
+    display: block;
+    width: 250px;
+    margin: 40px auto 30px auto;
+    padding: 10px;
+    color: $app-theme2;
+    background: $country-item-footer-bg;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .loading {
+    margin: calc(23% + 0px) auto 0 auto;
+  }
+
+  .btnLoading {
+    margin: 40px auto;
+  }
+
+  .countryItem {
+    &:hover {
+      .bgEffect {
+        background: rgba(0, 0, 0, 0.26);
+      }
+      .actions {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .bgEffect {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: rgb(0 0 0 / 18%);
+      transition: background-color .3s linear;
+    }
+
+    .actions {
+      position: absolute;
+      bottom: 2px;
+      right: 5px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s linear;
+
+      svg {
+        z-index: 10;
+        padding: 10px;
+        margin: 0 4px;
+        font-size: 40px;
+        border-radius: 4px;
+        color: $app-theme2;
+        border: 1px solid $country-item-footer-bg;
+        background: $body-bg;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .countryInfo {
+    background: $country-item-footer-bg;
+    padding: 10px;
+    border-radius: 0 0 4px 4px;
+
+    h2 {
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 13px;
+      font-weight: 400;
+      color: $country-item-text-color;
+      margin-top: 2px;
+
+      span {
+        font-size: 12px;
+        margin-left: 5px;
+        font-weight: 100;
+      }
+    }
+  }
+
+  .countryId {
+    width: max-content;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    padding: 5px 10px;
+    font-weight: 600;
+    color: $app-theme2;
+    background: $country-item-id-bg;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .container {
+    .countriesList {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .container {
+    .countriesList {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 806px) {
+  .container {
+    padding: 20px 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 20px 10px;
+
+    .countryItem {
+      .countryInfo {
+        h2 {
+          font-size: 25px;
+        }
+  
+        p {
+          font-size: 15px;
+          span {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    .countriesList {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

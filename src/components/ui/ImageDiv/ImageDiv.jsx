@@ -1,6 +1,7 @@
 import s from "./styles.module.scss";
 
 function ImageDiv({
+  children,
   variant,
   width,
   height,
@@ -21,7 +22,9 @@ function ImageDiv({
       backgroundPosition: position,
       backgroundSize: size,
       backgroundRepeat: repeat
-    }}></div>
+    }}>
+      {children && children}
+    </div>
   );
 }
 

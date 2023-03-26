@@ -16,11 +16,12 @@ function Header() {
   const {
     inputRef,
     clickRef,
-    photoURL,
+    placeholder,
     currentUser,
     openDropDown,
     toggleDropDown,
     onGoHome,
+    handleSubmit,
     handleDropDownClick,
     handleToggleSidebar
   } = useHeader();
@@ -40,12 +41,12 @@ function Header() {
         />
       </div>
       <nav className={s.navbar}>
-        <form className={s.form}>
+        <form className={s.form} onSubmit={handleSubmit}>
           <Input
             ref={inputRef}
             variant="s"
             type={"text"}
-            placeholder={"Search..."}
+            placeholder={placeholder || "Search..."}
           />
           <Button variant="h-s">
             <AiOutlineSearch />
@@ -59,7 +60,7 @@ function Header() {
           <ImageDiv 
             width={30} 
             height={30} 
-            image={photoURL || defaultPhoto} 
+            image={currentUser?.photoURL || defaultPhoto} 
           />
           <p className={s.displayName}>{currentUser?.displayName}</p>
           <MdOutlineArrowDropDown />

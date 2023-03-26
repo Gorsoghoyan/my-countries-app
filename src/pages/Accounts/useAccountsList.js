@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { db } from "../../lib/firebase";
 import { 
   collection, endBefore, getDocs, limit, 
-  limitToLast, orderBy, query, startAfter, startAt 
+  limitToLast, orderBy, query, startAfter, startAt, where 
 } from "firebase/firestore";
-import { db } from "../../lib/firebase";
 
 const useAccountsList = () => {
   const [error, setError] = useState("");
@@ -19,7 +19,7 @@ const useAccountsList = () => {
   const [lastVisible, setLastVisible] = useState(null);
   const [firstVisible, setFirstVisible] = useState(null);
   
-  const subUsersCollection = collection(db, "subUsers");
+  const usersCollection = collection(db, "users");
 
   useEffect(() => {
     getUsers();
@@ -31,13 +31,19 @@ const useAccountsList = () => {
     try {
       const first = firstVisible ? (
         query(
-          subUsersCollection, 
-          orderBy("email"), 
-          startAt(firstVisible.email), 
+          usersCollection, 
+          where("type", "==", "subUser"),
+          orderBy("createdAt", "desc"), 
+          startAt(firstVisible.createdAt), 
           limit(rowsPerPage)
         )
       ) : (
-        query(subUsersCollection, orderBy("email"), limit(rowsPerPage))
+        query(
+          usersCollection, 
+          where("type", "==", "subUser"), 
+          orderBy("createdAt", "desc"), 
+          limit(rowsPerPage)
+        )
       );
 
       const documentSnapshots = await getDocs(first);
@@ -50,7 +56,7 @@ const useAccountsList = () => {
       const lastVisibleUser = documentSnapshots.docs[documentSnapshots.docs.length - 1];
   
       const firstUsers = documentSnapshots.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      const allUsers = await getDocs(subUsersCollection);
+      const allUsers = await getDocs(query(usersCollection, where("type", "==", "subUser")));
       const allUsersSize = allUsers.size;
 
       setLastVisible(lastVisibleUser);
@@ -69,8 +75,9 @@ const useAccountsList = () => {
     setLoading(true);
     try {
       const next = query(
-        subUsersCollection, 
-        orderBy("email"), 
+        usersCollection, 
+        where("type", "==", "subUser"),
+        orderBy("createdAt", "desc"), 
         startAfter(lastVisible),
         limit(rowsPerPage)
       );
@@ -99,8 +106,9 @@ const useAccountsList = () => {
     setLoading(true);
     try {
       const prev = query(
-        subUsersCollection, 
-        orderBy("email"), 
+        usersCollection, 
+        where("type", "==", "subUser"),
+        orderBy("createdAt", "desc"), 
         endBefore(firstVisible),
         limitToLast(rowsPerPage)
       );

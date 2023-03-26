@@ -41,16 +41,9 @@ const useAuthForm = (type, initialData) => {
           createdAt: { ...docSnap.data().createdAt }
         }));
       } else {
-        const docSnap = await getDoc(
-          doc(db, "subUsers", userCredential.user.uid)
-        );
-  
-        if (docSnap.exists()) {
-          dispatch(setUser({
-            ...docSnap.data(),
-            createdAt: { ...docSnap.data().createdAt }
-          }));
-        } 
+        setError("User not found");
+        setLoading(false);
+        return;
       }
   
       setError("");
@@ -75,7 +68,10 @@ const useAuthForm = (type, initialData) => {
         id: userCredential.user.uid,
         displayName: getFullName(firstName, lastName),
         createdAt: serverTimestamp(),
-        photoURL: ""
+        email,
+        password,
+        photoURL: "",
+        type: "user"
       });
   
       setError("");

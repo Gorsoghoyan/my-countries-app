@@ -1,28 +1,12 @@
 import Button from "../Button/Button";
 import s from "./styles.module.scss";
 
-function PageTopPart({
-  title,
-  button,
-  btnText,
-  btnBackground,
-  btnBorder,
-  btnPadding,
-  onClick
-}) {
+function PageTopPart({ title, variant, button, btnText, onClick }) {
   return (
     <div className={s.container}>
       <h2>{title}</h2>
       {button && (
-        <Button
-          className={s.btn}
-          onClick={onClick}
-          style={{
-            background: btnBackground,
-            border: btnBorder,
-            padding: btnPadding
-          }}
-        >
+        <Button  variant={variant} onClick={onClick}>
           {btnText}
         </Button>
       )}

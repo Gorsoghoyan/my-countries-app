@@ -18,3 +18,17 @@
     height: 80px;
   }
 }
+
+// country item bg image
+.c-i {
+  position: relative;
+  width: 100%;
+  height: 225px;
+  border-radius: 0 !important;
+}
+
+@media screen and (max-width: 767px) {
+  .c-i {
+      height: 240px;
+  }
+}
