@@ -19,11 +19,6 @@ function CountryItem({
     <GridItem className={s.countryItem} variant={"c-i"}>
       <ImageDiv variant={"c-i"} image={flagURL}>
         <div className={s.bgEffect}></div>
-        <div className={s.actions}>
-          <BiSelectMultiple />
-          <MdEdit onClick={() => editCountry(id)} />
-          <AiFillDelete onClick={() => deleteCountry(id)} />
-        </div>
       </ImageDiv>
       <div className={s.countryInfo}>
         <h2>{name}</h2>
@@ -34,6 +29,11 @@ function CountryItem({
         <p>Capital:<span>{capital}</span></p>
       </div>
       <div className={s.countryId}>#{id}</div>
+      <div className={s.actions}>
+        <BiSelectMultiple />
+        <MdEdit onClick={() => editCountry(id)} />
+        <AiFillDelete onClick={() => deleteCountry(id)} />
+      </div>
     </GridItem>
   );
 }

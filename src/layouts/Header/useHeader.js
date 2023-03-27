@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DASHBOARD, LOGIN } from "../../utils/constants";
-import { changeValue, selectInput } from "../../store/slices/searchSlice";
+import { changeValue, selectInput, toggleInputClose } from "../../store/slices/searchSlice";
 import { selectCurrentUser, deleteUser } from "../../store/slices/userSlice";
 import { selectSideBarOpen, toggleSideBar } from "../../store/slices/sidebarSlice";
 import useToggle from "../../hooks/useToggle";
@@ -13,7 +13,7 @@ const useHeader = () => {
 
   const inputRef = useRef(null);
   const clickRef = useClickOutSide(() => toggleDropDown(false));
-  const { location, placeholder, value } = useSelector(selectInput);
+  const { location, placeholder, value, inputClose } = useSelector(selectInput);
   const currentUser = useSelector(selectCurrentUser);
   const sidebarOpen = useSelector(selectSideBarOpen); 
 
@@ -32,6 +32,7 @@ const useHeader = () => {
     if (!inpValue) return;
     if (inpValue === value) return;
     dispatch(changeValue(inpValue));
+    dispatch(toggleInputClose(true));
   };
 
   const onGoHome = () => {
@@ -54,13 +55,19 @@ const useHeader = () => {
     setTimeout(() => dispatch(toggleSideBar(true)), 0);
   };
 
+  const resetInput = () => {
+    dispatch(changeValue(""));
+  };
+
   return {
     inputRef,
     clickRef,
+    inputClose,
     placeholder,
     currentUser,
     openDropDown,
     toggleDropDown,
+    resetInput,
     onGoHome,
     handleSubmit,
     handleDropDownClick,

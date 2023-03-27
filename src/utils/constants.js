@@ -12,3 +12,6 @@ export const RESET_PASSWORD = { PATH: "reset-password", LINK: "/reset-password" 
 export const LEFT_PART = "Sign in to Countries app admin";
 export const REGISTER_TEXT = "Create your Countries Admin Account. It's free and always will be.";
 export const FOOT_TEXT = "© Countries Admin All Right Reserved 2023";
+
+// countries
+export const NO_COUNTRIES_MESSAGE = "There are no countries yet!";

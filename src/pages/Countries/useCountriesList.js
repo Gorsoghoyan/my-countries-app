@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changePlaceholder, changeValue, selectInput, setLocation } from "../../store/slices/searchSlice";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+import { changePlaceholder, changeValue, selectInput, setLocation, toggleInputClose } from "../../store/slices/searchSlice";
 import { collection, getDocs, limit, orderBy, query, startAfter, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase";
@@ -17,7 +18,7 @@ const useCountriesList = () => {
 
   const countriesCollection = collection(db, "countries");
 
-  const { value } = useSelector(selectInput);
+  const { value, inputClose } = useSelector(selectInput);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +34,13 @@ const useCountriesList = () => {
   }, []);
 
   useEffect(() => {
+    if (!value && inputClose) {
+      dispatch(toggleInputClose(false));
+      getCountries();
+    }
+
     if (!value) return;
+    
     getCountryByName(value);
   }, [value]);
 
@@ -54,7 +61,6 @@ const useCountriesList = () => {
 
       setLastVisible(lastVisibleCountry);
       setCountries(countries);
-      setDataLimit(120);
 
       setError("");
       setLoading(false);
@@ -102,7 +108,7 @@ const useCountriesList = () => {
     try {
       const q = query(
         countriesCollection,
-        where("name.common", ">=", value)
+        where("name.common", "==", capitalizeFirstLetter(value))
       );
 
       const documentSnapshots = await getDocs(q);
@@ -132,9 +138,11 @@ const useCountriesList = () => {
     loading,
     btnLoading,
     seeMore,
+    dataLimit,
     countries,
     editCountry,
-    deleteCountry
+    deleteCountry,
+    getMoreCountries
   };
 };
 

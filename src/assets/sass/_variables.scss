@@ -32,6 +32,7 @@ $accounts-delete-icon-color: #ff6767;
 $country-item-footer-bg: #2d353c;
 $country-item-id-bg: rgb(32 37 42 / 85%);
 $country-item-text-color: rgba(255, 255, 255, .75);
+$country-item-actions-color: #dee2e6;
 
 // profile
 $profile-user-image-bg: #2d353c;
@@ -54,10 +55,10 @@ $header-navbar-dropdown-hover-bg: #6c757d;
 // sidebar
 $sidebar-width: 220px;
 $sidebar-bg: #2d353c;
-$sidebar-profile-bg: rgba(32,37,42,.75);
+$sidebar-profile-bg: rgba(32, 37, 42, .75);
 $sidebar-profile-bg-hover: rgba(32, 37, 42, 0.499);
 $sidebar-menu-header-color: rgba(255, 255, 255, 0.45);
-$sidebar-component-color-rgb: rgb(255,255,255,.6);
+$sidebar-component-color-rgb: rgb(255, 255, 255, .6);
 $sidebar-component-active-color: #3b3f44;
 $sidebar-bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 
@@ -84,12 +85,13 @@ $add-user-btn-hover-bg: #008989;
 $upload-btn-color: #343a3f;
 $upload-btn-bg: #ffd900;
 $upload-btn-hover-bg: #bfa300;
+$go-top-arrow-bg: #008181;
 
 // inputs
 $header-input-plc-color: #656565;
 
 // fonts 
-$font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+$font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 // pages min height
 $page-min-height: calc(100vh - $header-height);

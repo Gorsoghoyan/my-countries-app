@@ -1,5 +1,23 @@
 @import "../../assets/sass/variables";
 
 .container {
-  min-height: $page-min-height;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+}
+
+.horizontalItem {
+  &.v-1 {
+    background: #495057;
+  }
+
+  &.v-2 {
+    background: #0000;
+  }
+
+  .v-1 {}
+
+  .v-2 {}
+
+  .v-3 {}
 }

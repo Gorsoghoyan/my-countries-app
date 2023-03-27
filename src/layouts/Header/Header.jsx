@@ -1,6 +1,6 @@
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { dropDownConfig } from "../../configs/header";
 import defaultPhoto from "../../assets/images/profile.png";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
@@ -17,9 +17,11 @@ function Header() {
     inputRef,
     clickRef,
     placeholder,
+    inputClose,
     currentUser,
     openDropDown,
     toggleDropDown,
+    resetInput,
     onGoHome,
     handleSubmit,
     handleDropDownClick,
@@ -51,6 +53,9 @@ function Header() {
           <Button variant="h-s">
             <AiOutlineSearch />
           </Button>
+          {inputClose && (
+            <AiOutlineClose className={s.close} onClick={resetInput} />
+          )}
         </form>
         <div 
           ref={clickRef} 

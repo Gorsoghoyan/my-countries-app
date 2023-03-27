@@ -1,49 +1,69 @@
+import { Fragment } from "react";
+import { NO_COUNTRIES_MESSAGE } from "../../utils/constants";
 import CountryItem from "./CountryItem";
 import useCountriesList from "./useCountriesList";
+import Button from "../../components/ui/Button/Button";
+import Spinner from "../../components/ui/Spinner/Spinner";
+import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
+import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
 import s from "./styles.module.scss";
 
 function CountriesList() {
-  const { 
+  const {
     error,
     loading,
     btnLoading,
     seeMore,
+    dataLimit,
     countries,
     editCountry,
-    deleteCountry
+    deleteCountry,
+    getMoreCountries
   } = useCountriesList();
 
   if (error) {
-
+    return <ErrorMessage error={error} variant={"c-p"} />;
   }
 
   if (loading) {
-
+    return <ComponentLoading variant={"c-p"} />;
   }
 
   if (!countries.length) {
-
+    return <ErrorMessage error={NO_COUNTRIES_MESSAGE} variant={"c-p"} />;
   }
 
   return (
-    <section className={s.countriesList}>
-      {countries.map(country => (
-        <CountryItem
-          key={country.id}
-          id={country.id}
-          region={country.region}
-          name={country.name.common}
-          flagURL={country.flags.png}
-          population={country.population}
-          capital={country.capital
-            ? country.capital[0]
-            : "Has no capital city"
-          }
-          deleteCountry={deleteCountry}
-          editCountry={editCountry}
-        />
-      ))}
-    </section>
+    <Fragment>
+      <section className={s.countriesList}>
+        {countries.map(country => (
+          <CountryItem
+            key={country.id}
+            id={country.id}
+            region={country.region}
+            name={country.name.common}
+            flagURL={country.flags.png}
+            population={country.population}
+            capital={country.capital
+              ? country.capital[0]
+              : "Has no capital city"
+            }
+            deleteCountry={deleteCountry}
+            editCountry={editCountry}
+          />
+        ))}
+      </section>  
+      {countries.length >= dataLimit && (
+        <Button
+          variant={"c-gm"}
+          disabled={!seeMore || btnLoading}
+          onClick={getMoreCountries}
+        >
+          {!btnLoading && (seeMore ? "See more" : "You are up to date!")}
+          {btnLoading && <Spinner size={18} />}
+        </Button>
+      )}
+    </Fragment>
   );
 }
 

@@ -40,6 +40,16 @@
       border-radius: 30px;
       background: $header-form-bg;
       border: $header-form-border-coler; 
+
+      .close {
+        position: absolute;
+        font-size: 17px;
+        right: 35px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $app-theme2;
+        cursor: pointer;
+      }
     }
 
     .dropDownLink {

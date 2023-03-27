@@ -1,0 +1,40 @@
+@use "../../../assets/sass/mixins";
+
+.modal {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(1, 1, 1, 0.2);
+  @include mixins.flex-center;
+
+  .modalDialog {
+    position: relative;
+    width: 80vw;
+    max-height: 90vh;
+    padding: 20px 25px;
+    overflow: auto;
+    background: white;
+    color: black;
+    border-radius: 5px;
+
+    .modalClose {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 25px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+    }
+    
+    .modalTitle {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .modalContent {
+
+    }
+  }
+}

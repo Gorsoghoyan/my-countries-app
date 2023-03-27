@@ -1,0 +1,26 @@
+@import "../../../assets/sass/variables";
+
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $go-top-arrow-bg;
+  z-index: 1020;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
