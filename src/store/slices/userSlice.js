@@ -9,8 +9,15 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, { payload }) => {
-      localStorage.setItem("user", JSON.stringify(payload));
-      state.currentUser = payload;
+      const userConfig = {
+        id: payload.id,
+        displayName: payload.displayName,
+        createdAt: payload.createdAt,
+        photoURL: payload.photoURL
+      };
+
+      localStorage.setItem("user", JSON.stringify(userConfig));
+      state.currentUser = userConfig;
     },
     deleteUser: (state) => {
       localStorage.setItem("user", null);

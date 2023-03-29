@@ -1,9 +1,10 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import useProfile from "./useProfile";
+import defalutPhoto from "../../assets/images/profile.png";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import FileUploadBtn from '../../components/ui/FileUploadBtn/FileUploadBtn';
-import defalutPhoto from "../../assets/images/profile.png";
+import EditProfile from './EditProfile';
 import s from "./styles.module.scss";
 
 function Profile() {
@@ -29,6 +30,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <EditProfile />
       <ToastContainer
         position="top-right"
         autoClose={5000}

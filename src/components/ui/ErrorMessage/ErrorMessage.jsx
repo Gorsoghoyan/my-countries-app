@@ -7,14 +7,16 @@ function ErrorMessage({
   color,
   fontWeight,
   fontSize,
-  margin
+  margin,
+  textAlign
 }) {
   return (
     <p className={c(s.error, s[variant])} style={{
       color,
       fontWeight,
       fontSize,
-      margin
+      margin,
+      textAlign
     }}>{error}</p>
   );
 }

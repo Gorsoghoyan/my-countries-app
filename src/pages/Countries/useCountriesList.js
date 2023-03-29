@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { changePlaceholder, changeValue, selectInput, setLocation, toggleInputClose } from "../../store/slices/searchSlice";
-import { collection, getDocs, limit, orderBy, query, startAfter, where } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, startAfter, where, or } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase";
 
@@ -23,7 +23,7 @@ const useCountriesList = () => {
 
   useEffect(() => {
     getCountries();
-    dispatch(changePlaceholder("Search by country's name..."));
+    dispatch(changePlaceholder("Search by country or region"));
     dispatch(setLocation("countries"));
 
     return () => {
@@ -108,7 +108,10 @@ const useCountriesList = () => {
     try {
       const q = query(
         countriesCollection,
-        where("name.common", "==", capitalizeFirstLetter(value))
+        or(
+          where("name.common", "==", capitalizeFirstLetter(value)),
+          where("region", "==", capitalizeFirstLetter(value)),
+        )
       );
 
       const documentSnapshots = await getDocs(q);
@@ -133,6 +136,10 @@ const useCountriesList = () => {
 
   };
 
+  const checkCountry = (id) => {
+
+  };
+
   return {
     error,
     loading,
@@ -140,6 +147,7 @@ const useCountriesList = () => {
     seeMore,
     dataLimit,
     countries,
+    checkCountry,
     editCountry,
     deleteCountry,
     getMoreCountries

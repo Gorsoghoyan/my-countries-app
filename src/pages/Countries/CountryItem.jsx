@@ -1,5 +1,6 @@
 import GridItem from "../../components/ui/GridItem/GridItem";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
+import { SELECT_COUNTRY_TITLE } from "../../utils/constants";
 import { BiSelectMultiple } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
@@ -12,6 +13,7 @@ function CountryItem({
   flagURL,
   capital,
   population,
+  checkCountry,
   editCountry,
   deleteCountry
 }) {
@@ -30,7 +32,10 @@ function CountryItem({
       </div>
       <div className={s.countryId}>#{id}</div>
       <div className={s.actions}>
-        <BiSelectMultiple />
+        <BiSelectMultiple 
+          title={SELECT_COUNTRY_TITLE} 
+          onClick={() => checkCountry(id)} 
+        />
         <MdEdit onClick={() => editCountry(id)} />
         <AiFillDelete onClick={() => deleteCountry(id)} />
       </div>

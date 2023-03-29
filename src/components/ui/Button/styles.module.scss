@@ -140,3 +140,31 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+// profile submit btn
+.p-s {
+  @include mixins.button(
+    150px,
+    9px,
+    $app-theme2, 
+    $darkBlue-btn-bg, 
+    $darkBlue-btn-hover-color,
+    $darkBlue-btn-hover-color,
+    $darkBlue-btn-focus-box-shadow
+  );
+  margin: 7px 0 7px 50px;
+}
+
+// profile cancel btn
+.p-c {
+  @include mixins.button(
+    150px,
+    9px,
+    $app-theme2, 
+    rgba(192, 192, 192, 0.192), 
+    rgba(192, 192, 192, 0.259),
+    rgba(192, 192, 192, 0.259),
+    $silver-btn-focus-box-shadow
+  );
+  margin-left: 10px;
+}

@@ -38,3 +38,29 @@
     font-size: 16px;
   }
 }
+
+// profile 
+.p {
+  width: 300px;
+  border: 1px solid $profile-input-border-color;
+  background: $profile-input-bg-color;
+  outline: none;
+  display: block;
+  padding: 10px;
+  margin: 15px 20px;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 4px;
+  transition: box-shadow .2s linear;
+  color: white;
+  
+  &::placeholder {
+    color: silver;
+    font-size: 13px;
+  }
+
+  &:focus {
+    box-shadow: 0 0 2px 3px rgba(71, 163, 255, 0.479);
+    border-color: $auth-input-focus-border-color;
+  }
+}

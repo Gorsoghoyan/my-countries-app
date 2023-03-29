@@ -4,6 +4,7 @@ import c from "classnames";
 function Button({
   children,
   variant,
+  type,
   width,
   height,
   borderRadius,
@@ -16,6 +17,7 @@ function Button({
 
   return (
     <button
+      type={type}
       className={c(s.default, s[variant])}
       disabled={disabled}
       onClick={onClick}

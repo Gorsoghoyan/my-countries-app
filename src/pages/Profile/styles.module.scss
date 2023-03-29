@@ -28,6 +28,36 @@
       }
     }
   }
+
+  .form {
+    margin: 60px 0;
+    color: $app-theme2;
+    padding: 0 20px;
+
+    hr {
+      border: none;
+      border-bottom: 1px solid rgb(97, 97, 97);
+    }
+
+    .hrBottom {
+      margin-bottom: 30px;
+    }
+
+    .hrTop {
+      margin-top: 40px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin: 5px 20px;
+      color: #348fe2; 
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -42,6 +72,10 @@
       .textBlock {
         margin-left: 20px;
       }
+    }
+
+    .form {
+      margin: 30px 0;
     }
   }
 }

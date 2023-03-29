@@ -1,12 +1,39 @@
 @import "../../assets/sass/variables";
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  padding: 20px 30px;
+  
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 
+  .newUsersContainer {
+    a {
+      width: max-content;
+      text-decoration: none;
+      color: #FFFFFF80;
+      font-size: 12px;
+      margin: 10px auto;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 20px 10px;
+  }
 }
 
 .horizontalItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+
   &.v-1 {
     background: #495057;
   }
@@ -15,9 +42,23 @@
     background: #0000;
   }
 
-  .v-1 {}
+  .v-1,
+  .v-2,
+  .v-3 {
+    padding: 3px 5px;
+    border-radius: 5px;
+    font-size: 10px;
+  }
 
-  .v-2 {}
+  .v-1 {
+    background: rgba(0, 172, 172);
+  }
 
-  .v-3 {}
+  .v-2 {
+    background: rgba(52, 143, 226);
+  }
+
+  .v-3 {
+    background: rgba(108, 117, 125);
+  }
 }

@@ -1,9 +1,9 @@
 
 function Paper(props) {
   return (
-    <div {...props}>
+    <section {...props}>
       {props.children}
-    </div>
+    </section>
   );
 }
 

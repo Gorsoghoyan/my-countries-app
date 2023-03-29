@@ -78,6 +78,7 @@ $blue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($blue-btn-hover-color, .5);
 $darkBlue-btn-bg: #348fe2;
 $darkBlue-btn-hover-color: #276baa;
 $darkBlue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($darkBlue-btn-hover-color, .5);
+$silver-btn-focus-box-shadow: 0 0 0 0.25rem rgba(silver, .2);
 $search-icon-btn-color: #343a3f;
 $add-user-btn-bg: #009797;
 $add-country-btn-bg: #009797;
@@ -89,6 +90,8 @@ $go-top-arrow-bg: #008181;
 
 // inputs
 $header-input-plc-color: #656565;
+$profile-input-border-color: #495057;
+$profile-input-bg-color: #2d353c;
 
 // fonts 
 $font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;

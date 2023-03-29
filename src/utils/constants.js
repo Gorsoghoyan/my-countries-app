@@ -15,3 +15,4 @@ export const FOOT_TEXT = "© Countries Admin All Right Reserved 2023";
 
 // countries
 export const NO_COUNTRIES_MESSAGE = "There are no countries yet!";
+export const SELECT_COUNTRY_TITLE = "By selecting the country you will see the result on the Dashboard page";

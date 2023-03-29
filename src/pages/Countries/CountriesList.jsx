@@ -16,6 +16,7 @@ function CountriesList() {
     seeMore,
     dataLimit,
     countries,
+    checkCountry,
     editCountry,
     deleteCountry,
     getMoreCountries
@@ -48,6 +49,7 @@ function CountriesList() {
               ? country.capital[0]
               : "Has no capital city"
             }
+            checkCountry={checkCountry}
             deleteCountry={deleteCountry}
             editCountry={editCountry}
           />
