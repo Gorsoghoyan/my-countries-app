@@ -1,34 +1,35 @@
-import { AiOutlineClose } from "react-icons/ai";
-import useClickOutSide from "../../../hooks/useClickOutSide";
-import useToggle from "../../../hooks/useToggle";
+import useModal from "./useModal";
+import { AnimatePresence, motion } from "framer-motion";
 import s from "./styles.module.scss";
 
-function Modal({ title, width, height, close = true, children }) {
-  const [openModal, toggle] = useToggle(true);
-
-  const clickRef = useClickOutSide(() => toggle(false));
+function Modal({ show, onClose, closeWithin, children }) {
+  const { clickRef, backdrop, modal } = useModal(onClose);
 
   return (
-    openModal && (
-      <section className={s.modal}>
-        <div
-          ref={clickRef}
-          className={s.modalDialog}
-          style={{ width, height }}
+    <AnimatePresence mode="wait">
+      {show && (
+        <motion.section
+          className={s.modalBackdrop}
+          variants={backdrop}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
         >
-          {close && (
-            <AiOutlineClose
-              className={s.modalClose}
-              onClick={() => toggle(false)}
-            />
-          )}
-          <h2 className={s.modalTitle}>{title}</h2>
-          <div className={s.modalContent}>
-            {children}
-          </div>
-        </div>
-      </section>
-    )
+          <motion.div
+            className={s.modalDialog}
+            ref={clickRef}
+            variants={modal}
+            initial="initial"
+            animate="current"
+            exit="exit"
+          >
+            <div className={s.modalContent}>
+              {children}
+            </div>
+          </motion.div>
+        </motion.section>
+      )}
+    </AnimatePresence>
   );
 }
 

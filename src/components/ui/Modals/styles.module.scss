@@ -1,12 +1,14 @@
 @use "../../../assets/sass/mixins";
 
-.modal {
+.modalBackdrop {
   position: fixed;
+  left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(1, 1, 1, 0.2);
+  background: rgba(1, 1, 1, 0.362);
   @include mixins.flex-center;
+  z-index: 100000;
 
   .modalDialog {
     position: relative;
@@ -17,6 +19,10 @@
     background: white;
     color: black;
     border-radius: 5px;
+
+    .modalContent {
+
+    }
 
     .modalClose {
       position: absolute;
@@ -31,10 +37,6 @@
     .modalTitle {
       font-size: 30px;
       margin-bottom: 20px;
-    }
-
-    .modalContent {
-
     }
   }
 }

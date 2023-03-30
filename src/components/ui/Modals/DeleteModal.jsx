@@ -1,9 +1,18 @@
+import { useState } from "react";
 import { CiWarning } from "react-icons/ci";
 import Modal from "./Modal";
 
-function DeleteModal({ title }) {
+function DeleteModal() {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleIsOpen = (v) => setIsOpen(v);
+
   return (
-    <Modal title={title} width={512} close={false}>
+    <Modal 
+      width={512} 
+      isOpen={isOpen} 
+      handleIsOpen={handleIsOpen}
+    > 
       <CiWarning fontSize={100} />
     </Modal>
   );
