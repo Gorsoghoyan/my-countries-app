@@ -1,39 +1,36 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useImperativeHandle, useState } from "react";
 import useClickOutSide from "../../../hooks/useClickOutSide";
 
-const useModal = (onClose) => {
-  const clickRef = useClickOutSide(() => onClose());
+const useModal = (ref) => {
+  const [open, setOpen] = useState(false);
 
-  // useEffect(() => {
-  //   document.body.style.overflow = "hidden";
+  useImperativeHandle(ref, () => {
+    return {
+      open: () => setTimeout(() => setOpen(true), 0),
+      close: () => setOpen(false)
+    };
+  });
 
-  //   return () => document.body.style.overflow = "auto";
-  // });
-
-  const backdrop = useMemo(() => ({
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 }
-  }), []);
-
-  const modal = useMemo(() => ({
-    initial: { opacity: 0, scale: 0.25 },
-    current: { 
-      opacity: 1, 
-      scale: 1, 
-      transform: { delay: 1 },
-      transition: { duration: 0.6 }
-    },
-    exit: { 
-      opacity: 0, 
-      scale: 0,
-      transition: { duration: 0.6 }
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
-  }), []);
+  }, [open]);
+
+  const clickRef = useClickOutSide(() => {
+    if (open) setOpen(false);
+  }); 
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return {
+    open,
     clickRef,
-    backdrop,
-    modal
+    handleClose
   };
 };
 

@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { getPreviousDay } from "../../utils/getPreviousDay";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 
 const useNewRegisteredUsers = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [badgeText, setBadgeText] = useState("");
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -14,33 +12,17 @@ const useNewRegisteredUsers = () => {
       setLoading(true);
       try {
         const usersCollection = collection(db, "users");
-        const timestamp = getPreviousDay(1);
-        let users = [];
 
         const q = query(
           usersCollection,
           where("type", "==", "subUser"),
-          where("createdAt", ">=", timestamp),
+          orderBy("createdAt", "desc"),
           limit(8)
         );
 
         const documentSnapshots = await getDocs(q);
 
-        if (documentSnapshots.size) {
-          users = documentSnapshots.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-          setBadgeText("new sub-users with 2 days data");
-        } else {
-          const q = query(
-            usersCollection,
-            where("type", "==", "subUser"),
-            limit(8)
-          );
-
-          const documentSnapshots = await getDocs(q);
-
-          users = documentSnapshots.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-          setBadgeText("sub-users");
-        }
+        const users = documentSnapshots.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
         setError("");
         setLoading(false);
@@ -57,7 +39,6 @@ const useNewRegisteredUsers = () => {
   return {
     error,
     loading,
-    badgeText,
     users
   }
 };

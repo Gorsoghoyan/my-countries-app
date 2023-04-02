@@ -1,0 +1,28 @@
+.modal {
+  padding: 40px;
+  width: 600px;
+
+  h2 {
+    font-size: 25px;  
+    margin-bottom: 20px;
+  }  
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin: 5px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 764px) {
+  .modal {
+    width: inherit;
+
+    form {
+      align-items: center;
+    }
+  }
+}

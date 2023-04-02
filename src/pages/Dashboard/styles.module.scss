@@ -16,6 +16,37 @@
       font-size: 12px;
       margin: 10px auto;
     }
+
+    .body {
+      position: relative;
+      display: flex;
+      min-height: 246px;
+
+      .usersWrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        padding: 5px 7.5px;
+        overflow: auto;
+  
+        .userItem {
+          padding: 7.5px;
+          font-size: 12px;
+  
+          p {
+            white-space: nowrap !important;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-top: 5px;
+            color: white;
+          }
+        }
+      }
+    }
+
+    hr {
+      border: none;
+      border-bottom: 1px solid rgba(73, 80, 87, .75);
+    }
   }
 }
 

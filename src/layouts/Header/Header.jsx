@@ -65,7 +65,8 @@ function Header() {
           <ImageDiv 
             width={30} 
             height={30} 
-            image={currentUser?.photoURL || defaultPhoto} 
+            image={currentUser?.photoURL} 
+            defaultImage={defaultPhoto}
           />
           <p className={s.displayName}>{currentUser?.displayName}</p>
           <MdOutlineArrowDropDown />

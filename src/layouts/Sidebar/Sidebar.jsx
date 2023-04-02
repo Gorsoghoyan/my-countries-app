@@ -2,7 +2,7 @@ import { navigations } from "../../configs/sidebar";
 import useSidebar from "./useSidebar";
 import NavigationItem from "./NavigationItem";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
-import profileDefault from "../../assets/images/profile.png"
+import defaultPhoto from "../../assets/images/profile.png"
 import s from "./styles.module.scss";
 import c from "classnames";
 
@@ -18,7 +18,8 @@ function Sidebar() {
         <ImageDiv 
           width={36} 
           height={36} 
-          image={currentUser?.photoURL || profileDefault} 
+          image={currentUser?.photoURL}
+          defaultImage={defaultPhoto}
         />
         <p>{currentUser?.displayName}</p>
       </div>

@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { Navigate  } from "react-router-dom";
 import { selectCurrentUser } from "../../store/slices/userSlice";
 import { DASHBOARD } from "../../utils/constants";
-import DeleteModal from "../../components/ui/Modals/DeleteModal";
 import PageTopPart from "../../components/ui/PageTopPart/PageTopPart";
 import AccountsList from "./AccountsList";
 import s from "./styles.module.scss";
@@ -18,7 +17,6 @@ function Accounts() {
     <div className={s.container}>
       <PageTopPart title={"Accounts"} />
       <AccountsList />
-      <DeleteModal />
     </div>
   );
 }

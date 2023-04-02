@@ -2,19 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { changePlaceholder, changeValue, selectInput, setLocation, toggleInputClose } from "../../store/slices/searchSlice";
 import { collection, getDocs, limit, orderBy, query, startAfter, where, or } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { db } from "../../lib/firebase";
 
-const useCountriesList = () => {
+const useCountriesList = (addEditCountryModalRef) => {
   const [lastVisible, setLastVisible] = useState();
   const [countries, setCountries] = useState([]);
-  const [dataLimit, setDataLimit] = useState(100);
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
 
   const [seeMore, setSeeMore] = useState(true);
+
+  const dataLimit = 100;
 
   const countriesCollection = collection(db, "countries");
 
@@ -129,11 +130,9 @@ const useCountriesList = () => {
   }
 
   const editCountry = (id) => {
-
   };
 
   const deleteCountry = (id) => {
-
   };
 
   const checkCountry = (id) => {

@@ -16,7 +16,8 @@ function Profile() {
         <div className={s.userInfo}>
           <ImageDiv
             variant="p-u"
-            image={currentUser?.photoURL || defalutPhoto}
+            image={currentUser?.photoURL}
+            defaultImage={defalutPhoto}
           />
           <div className={s.textBlock}>
             <h2>{currentUser?.displayName}</h2>

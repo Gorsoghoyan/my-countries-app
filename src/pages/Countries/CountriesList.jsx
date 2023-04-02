@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { NO_COUNTRIES_MESSAGE } from "../../utils/constants";
-import CountryItem from "./CountryItem";
 import useCountriesList from "./useCountriesList";
+import CountryItem from "./CountryItem";
 import Button from "../../components/ui/Button/Button";
 import Spinner from "../../components/ui/Spinner/Spinner";
 import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
