@@ -93,7 +93,8 @@ function AccountsList() {
                       width={35}
                       height={35}
                       margin="0 20px 0 0"
-                      image={row.photoURL || defaultAvatar} 
+                      image={row.photoURL} 
+                      defaultImage={defaultAvatar}
                     />
                     {row.displayName}
                   </TableBodyCell>

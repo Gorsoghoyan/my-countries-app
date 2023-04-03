@@ -5,6 +5,7 @@ function ImageDiv({
   variant,
   width,
   height,
+  minHeight,
   image,
   defaultImage,
   size = "cover",
@@ -17,6 +18,7 @@ function ImageDiv({
     <div className={s[variant]} style={{
       width,
       height,
+      minHeight,
       margin,
       borderRadius,
       backgroundImage: `url(${image}), url(${defaultImage})`,

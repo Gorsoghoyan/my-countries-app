@@ -1,46 +1,48 @@
 import { Link } from "react-router-dom";
 import { ACCOUNTS } from "../../utils/constants";
-import defaultPhoto from "../../assets/images/profile.png";
-import useNewRegisteredUsers from "./useNewRegisteredUsers";
+import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
+import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
 import GridItem from "../../components/ui/GridItem/GridItem";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import HorizontalItem from "./HorizontalItem";
+import defaultPhoto from "../../assets/images/profile.png";
+import useNewRegisteredUsers from "./useNewRegisteredUsers";
 import s from "./styles.module.scss";
-import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
-import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
 
 function NewRegisteredUsers() {
   const { error, loading, users } = useNewRegisteredUsers();
 
   return (
-    <GridItem 
-      className={s.newUsersContainer} 
-      variant={"d-i-column"} 
+    <GridItem
+      className={s.newUsersContainer}
+      variant={"d-i-column"}
       bg={"d-i-bg-1"}
     >
-      <HorizontalItem 
+      <HorizontalItem
         title={"New registered sub-users"}
         bgVariant={"v-1"}
         badge={`The last ${users.length} sub-users`}
         badgeBgVariant={"v-1"}
       />
       <div className={s.body}>
-        <div className={s.usersWrapper}>
-          {!!users.length && users.map(user => (
-            <UserItem 
-              key={user.id}
-              name={user.displayName} 
-              photoURL={user.photoURL}  
-            />
-          ))}
-        </div>
+        {!!users.length && (
+          <div className={s.usersWrapper}>
+            {users.map(user => (
+              <UserItem
+                key={user.id}
+                name={user.displayName}
+                photoURL={user.photoURL}
+              />
+            ))}
+          </div>
+        )}
         {((!users.length || error) && !loading) && (
-          <ErrorMessage 
-            variant={"d-center"} 
-            error={error || "There are no sub-users"} 
+          <ErrorMessage
+            variant={"d-center"}
+            error={error || "There are no sub-users"}
           />
         )}
-        {loading && (
+        {loading   && (
           <ComponentLoading size={40} />
         )}
       </div>
@@ -53,9 +55,9 @@ function NewRegisteredUsers() {
 function UserItem({ name, photoURL }) {
   return (
     <div className={s.userItem}>
-      <ImageDiv 
+      <ImageDiv
         width={"100%"}
-        height={"80%"}
+        minHeight={110}
         borderRadius={"4px 4px 0 0"}
         image={photoURL}
         defaultImage={defaultPhoto}
