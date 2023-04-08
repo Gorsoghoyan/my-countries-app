@@ -46,8 +46,10 @@ function NewRegisteredUsers() {
           <ComponentLoading size={40} />
         )}
       </div>
-      <hr />
-      <Link to={ACCOUNTS.LINK}>View All</Link>
+      <div>
+        <hr />
+        <Link to={ACCOUNTS.LINK}>View All</Link>
+      </div>
     </GridItem>
   );
 }
@@ -57,7 +59,7 @@ function UserItem({ name, photoURL }) {
     <div className={s.userItem}>
       <ImageDiv
         width={"100%"}
-        minHeight={110}
+        height={"80%"}
         borderRadius={"4px 4px 0 0"}
         image={photoURL}
         defaultImage={defaultPhoto}

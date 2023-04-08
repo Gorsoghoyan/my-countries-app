@@ -1,104 +1,114 @@
-import { 
-  Text,
-  Area, 
-  XAxis, 
+import {
+  Area,
+  XAxis,
   YAxis,
-  Tooltip, 
-  AreaChart, 
-  CartesianGrid, 
-  ResponsiveContainer,
+  Tooltip,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer
 } from "recharts";
 import GridItem from "../../components/ui/GridItem/GridItem";
+import { useEffect, useState } from "react";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
+import { db } from "../../lib/firebase";
+import { numFormatter } from "../../utils/numFormatter";
+import { stringFormatter } from "../../utils/stringFormatter";
+import v from "../../assets/sass/_variables.scss";
 import s from "./styles.module.scss";
 
-const data = [
-  {
-    "name": "Page A",
-    "uv": 4000,
-    "pv": 2400,
-    "amt": 2400
-  },
-  {
-    "name": "Page B",
-    "uv": 3000,
-    "pv": 1398,
-    "amt": 2210
-  },
-  {
-    "name": "Page C",
-    "uv": 2000,
-    "pv": 9800,
-    "amt": 2290
-  },
-  {
-    "name": "Page D",
-    "uv": 2780,
-    "pv": 3908,
-    "amt": 2000
-  },
-  {
-    "name": "Page E",
-    "uv": 1890,
-    "pv": 4800,
-    "amt": 2181
-  },
-  {
-    "name": "Page F",
-    "uv": 2390,
-    "pv": 3800,
-    "amt": 2500
-  },
-  {
-    "name": "Page G",
-    "uv": 3490,
-    "pv": 4300,
-    "amt": 2100
-  }
-]
+function TooltipContent(props) {
+  if (!props.active || !props.payload) return;
 
-function AreaChartCountries() {
+  const data = props.payload[0].payload;
 
   return (
-    <GridItem 
-      className={s.areaChartCountries} 
-      bg={"d-i-bg-2"} 
+    <div className={s.tooltipContent}>
+      <h2>{data.name}</h2>
+      <div className={s.p}>
+        <span>Population: {numFormatter(data.population)}</span>
+      </div>
+      <div className={s.a}>
+        <span>Area: {numFormatter(data.area)}</span>
+      </div>
+    </div>
+  );
+}
+
+function AreaChartCountries() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getChartData = async () => {
+      const q = query(
+        collection(db, "countries"),
+        orderBy("population", "desc"),
+        limit(7)
+      );
+
+      const documentSnapshots = await getDocs(q);
+
+      const chartData = documentSnapshots.docs.map(doc => {
+        const country = doc.data();
+
+        return {
+          name: country.name.common,
+          population: country.population,
+          area: country.area
+        };
+      });
+
+      setData(chartData);
+      console.log(chartData)
+    };
+    getChartData();
+  }, []);
+
+  return (
+    <GridItem
+      className={s.areaChartCountries}
+      bg={"d-i-bg-2"}
       gridColumn={"1 / 3"}
-    > 
-      <ResponsiveContainer>
-        <AreaChart
-          data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-            </linearGradient>
-            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="name" />
-          <YAxis />
-          <CartesianGrid strokeDashoffset="1 1" />
-          <Tooltip />
-          <Area 
-            type="monotone" 
-            dataKey="uv" 
-            strokeOpacity={0} 
-            fillOpacity={1} 
-            fill="rgb(52, 143, 226, .7)" 
-          />  
-          <Area 
-            type={"monotone"} 
-            dataKey="pv" 
-            strokeOpacity={0} 
-            fillOpacity={1} 
-            fill="rgb(73, 182, 214, .7)" 
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+    >
+      <div className={s.leftChartWrapper}>
+        <div className={s.head}>
+          <h2>Countries Area Chart</h2>
+          <p>Here you can see the 7 most populous contries</p>
+        </div>
+        {!!data.length && (
+          <ResponsiveContainer className={s.responsiveContainer}>
+            <AreaChart
+              data={data}
+              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+            >
+              <XAxis 
+                dataKey="name" 
+                stroke="#dee2e6" 
+                tickFormatter={stringFormatter} 
+              />
+              <YAxis stroke="#dee2e6" tickFormatter={numFormatter} />
+              <CartesianGrid opacity={0.5} />
+              <Tooltip
+                content={<TooltipContent />}
+                wrapperStyle={{ outline: "none" }}
+              />
+              <Area
+                type="monotone"
+                dataKey="population"
+                strokeOpacity={0}
+                fillOpacity={1}
+                fill={v.populationFill}
+              />
+              <Area
+                type={"monotone"}
+                dataKey="area"
+                strokeOpacity={0}
+                fillOpacity={1}
+                fill={v.areaFill}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        )}
+      </div>
       <div className={s.rightChartWrapper}>
 
       </div>

@@ -10,6 +10,10 @@ $body-line-height: 1.5;
 $body-color: #dee2e6;
 $body-bg: #161a1d;
 
+// dashboard
+$countries-chart-population-fill-color: rgb(52, 143, 226, .7);
+$countries-chart-area-fill-color: rgb(73, 182, 214, .7);
+
 // auth
 $auth-right-bg: #2d353c;
 $auth-paragraph-color: #bcbcbcd9;
@@ -104,4 +108,6 @@ $page-min-height: calc(100vh - $header-height);
   errorColor: $accounts-error-color;
   itemBg: $autocomplete-item-bg;
   noItemBg: $autocomplete-no-item-bg;
+  populationFill: $countries-chart-population-fill-color;
+  areaFill: $countries-chart-area-fill-color;
 }
