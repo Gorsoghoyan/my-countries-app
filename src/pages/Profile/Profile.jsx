@@ -1,6 +1,5 @@
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
 import useProfile from "./useProfile";
+import Toast from '../../components/ui/Toast/Toast';
 import defalutPhoto from "../../assets/images/profile.png";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import FileUploadBtn from '../../components/ui/FileUploadBtn/FileUploadBtn';
@@ -32,18 +31,7 @@ function Profile() {
         </div>
       </div>
       <EditProfile />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <Toast />
     </div>
   );
 }

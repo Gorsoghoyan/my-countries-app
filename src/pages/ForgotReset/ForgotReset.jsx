@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
-import { ToastContainer } from "react-toastify";
 import { LOGIN } from "../../utils/constants";
 import useForgotReset from "./useForgotReset";
 import Input from "../../components/form/Input/Input";
@@ -9,9 +8,9 @@ import Button from "../../components/ui/Button/Button";
 import Spinner from "../../components/ui/Spinner/Spinner";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
+import Toast from "../../components/ui/Toast/Toast";
 import v from "../../assets/sass/_variables.scss";
 import s from "./styles.module.scss";
-import "react-toastify/dist/ReactToastify.css";
 
 function ForgotReset({ type }) {
   const { current, inputRef, loading, error, handleSubmit } = useForgotReset(type);
@@ -45,19 +44,7 @@ function ForgotReset({ type }) {
           </Link>
         </form>
       </main>
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        limit={1}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <Toast type="success" />
     </Fragment>
   );
 }

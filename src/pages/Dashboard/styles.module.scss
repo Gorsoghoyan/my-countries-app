@@ -12,21 +12,36 @@
 
   .areaChartCountries {
     display: flex;
-    padding: 18px;
     border-radius: 4px;
 
     .leftChartWrapper {
       width: calc(100% - 230px);
+      padding: 18px 0 10px 0;
+      background: rgb(45, 53, 60);
 
       .head {
         height: 20%;
+        padding-left: 30px;
+
+        h2 {
+          font-size: 16px;
+        }
+
+        p {
+          font-size: 12px;
+          margin-top: 3px;
+          color: #9ba8b4;
+        }
       }
 
       .responsiveContainer {
         height: 80% !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .tooltipContent {
-          width: 200px;
+          width: 170px;
           border: none;
           padding: 10px;
           border-radius: 10px;
@@ -71,6 +86,9 @@
 
     .rightChartWrapper {
       width: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 

@@ -7,10 +7,10 @@ import {
   CartesianGrid,
   ResponsiveContainer
 } from "recharts";
+import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
+import useAreaChartCountries from "./useAreaChartCountries";
 import GridItem from "../../components/ui/GridItem/GridItem";
-import { useEffect, useState } from "react";
-import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
-import { db } from "../../lib/firebase";
+import Toast from "../../components/ui/Toast/Toast";
 import { numFormatter } from "../../utils/numFormatter";
 import { stringFormatter } from "../../utils/stringFormatter";
 import v from "../../assets/sass/_variables.scss";
@@ -35,33 +35,10 @@ function TooltipContent(props) {
 }
 
 function AreaChartCountries() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const getChartData = async () => {
-      const q = query(
-        collection(db, "countries"),
-        orderBy("population", "desc"),
-        limit(7)
-      );
-
-      const documentSnapshots = await getDocs(q);
-
-      const chartData = documentSnapshots.docs.map(doc => {
-        const country = doc.data();
-
-        return {
-          name: country.name.common,
-          population: country.population,
-          area: country.area
-        };
-      });
-
-      setData(chartData);
-      console.log(chartData)
-    };
-    getChartData();
-  }, []);
+  const {
+    areaLoading,
+    areaChartData,
+  } = useAreaChartCountries();
 
   return (
     <GridItem
@@ -74,44 +51,51 @@ function AreaChartCountries() {
           <h2>Countries Area Chart</h2>
           <p>Here you can see the 7 most populous contries</p>
         </div>
-        {!!data.length && (
-          <ResponsiveContainer className={s.responsiveContainer}>
-            <AreaChart
-              data={data}
-              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-            >
-              <XAxis 
-                dataKey="name" 
-                stroke="#dee2e6" 
-                tickFormatter={stringFormatter} 
-              />
-              <YAxis stroke="#dee2e6" tickFormatter={numFormatter} />
-              <CartesianGrid opacity={0.5} />
-              <Tooltip
-                content={<TooltipContent />}
-                wrapperStyle={{ outline: "none" }}
-              />
-              <Area
-                type="monotone"
-                dataKey="population"
-                strokeOpacity={0}
-                fillOpacity={1}
-                fill={v.populationFill}
-              />
-              <Area
-                type={"monotone"}
-                dataKey="area"
-                strokeOpacity={0}
-                fillOpacity={1}
-                fill={v.areaFill}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        )}
+        <div className={s.responsiveContainer}>
+          {areaLoading && <ComponentLoading />}
+          {!!areaChartData.length && (
+            <ResponsiveContainer>
+              <AreaChart
+                data={areaChartData}
+                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+              >
+                <XAxis
+                  dataKey="name"
+                  stroke="#dee2e6"
+                  tickFormatter={stringFormatter}
+                />
+                <YAxis stroke="#dee2e6" tickFormatter={numFormatter} />
+                <CartesianGrid opacity={0.2} />
+                <Tooltip
+                  content={<TooltipContent />}
+                  wrapperStyle={{ outline: "none" }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="population"
+                  strokeOpacity={0}
+                  fillOpacity={1}
+                  fill={v.populationFill}
+                />
+                <Area
+                  type={"monotone"}
+                  dataKey="area"
+                  strokeOpacity={0}
+                  fillOpacity={1}
+                  fill={v.areaFill}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          )}
+        </div>
       </div>
       <div className={s.rightChartWrapper}>
-
+        <div>
+          <h2></h2>
+          <p>Total countries</p>
+        </div>
       </div>
+      <Toast />
     </GridItem>
   );
 };
