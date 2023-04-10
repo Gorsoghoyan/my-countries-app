@@ -14,8 +14,8 @@ const useAreaChartCountries = () => {
   const countriesCollection = collection(db, "countries");
 
   useEffect(() => {
-    getAreaChartData();
-    getDonutChartData();
+    // getAreaChartData();
+    // getDonutChartData();
   }, []);
 
   async function getAreaChartData() {
@@ -55,10 +55,12 @@ const useAreaChartCountries = () => {
         where("independent", "==", true)
       );
 
-      const independentCountriesSnapshots = await getDocs(q);
       const allCountriesSnapshots = await getDocs(countriesCollection);
+      const independentCountriesSnapshots = await getDocs(q);
 
       setDonutLoading(false);
+      setTotalCountriesSize(allCountriesSnapshots.size);
+      setIndependentCountriesSize(independentCountriesSnapshots.size);
     } catch (error) {
       setDonutLoading(false);
       toast.error(error.message);
@@ -67,7 +69,9 @@ const useAreaChartCountries = () => {
 
   return {
     areaChartData,
-    areaLoading
+    areaLoading,
+    independentCountriesSize,
+    totalCountriesSize
   };
 };
 

@@ -1,20 +1,14 @@
-import {
-  Area,
-  XAxis,
-  YAxis,
-  Tooltip,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer
-} from "recharts";
-import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
+import Chart from "react-apexcharts";
+import Toast from "../../components/ui/Toast/Toast";
 import useAreaChartCountries from "./useAreaChartCountries";
 import GridItem from "../../components/ui/GridItem/GridItem";
-import Toast from "../../components/ui/Toast/Toast";
+import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
+import { Area, XAxis, YAxis, Tooltip, AreaChart, CartesianGrid, ResponsiveContainer } from "recharts";
 import { numFormatter } from "../../utils/numFormatter";
 import { stringFormatter } from "../../utils/stringFormatter";
 import v from "../../assets/sass/_variables.scss";
 import s from "./styles.module.scss";
+
 
 function TooltipContent(props) {
   if (!props.active || !props.payload) return;
@@ -38,6 +32,8 @@ function AreaChartCountries() {
   const {
     areaLoading,
     areaChartData,
+    independentCountriesSize,
+    totalCountriesSize
   } = useAreaChartCountries();
 
   return (
@@ -62,10 +58,18 @@ function AreaChartCountries() {
                 <XAxis
                   dataKey="name"
                   stroke="#dee2e6"
+                  axisLine={false}
+                  tickLine={false}
                   tickFormatter={stringFormatter}
                 />
-                <YAxis stroke="#dee2e6" tickFormatter={numFormatter} />
-                <CartesianGrid opacity={0.2} />
+                <YAxis 
+                  stroke="#dee2e6" 
+                  tickCount={6} 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tickFormatter={numFormatter} 
+                />
+                <CartesianGrid opacity={0.2} vertical={false} />
                 <Tooltip
                   content={<TooltipContent />}
                   wrapperStyle={{ outline: "none" }}
@@ -90,10 +94,27 @@ function AreaChartCountries() {
         </div>
       </div>
       <div className={s.rightChartWrapper}>
-        <div>
-          <h2></h2>
+        <div className={s.head}>
+          <h2>{totalCountriesSize.toLocaleString("en-US")}</h2>
           <p>Total countries</p>
         </div>
+        <Chart
+          type={"donut"}
+          width={300}
+          height={300}
+          series={[
+            independentCountriesSize,
+            totalCountriesSize - independentCountriesSize
+          ]}
+          options={{
+            labels: ["Independent countries", "Dependent countries"],
+            dataLabels: {
+              formatter: function (val) {
+                return val + "nananananan"
+              },
+            }
+          }}
+        />
       </div>
       <Toast />
     </GridItem>

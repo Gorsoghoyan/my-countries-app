@@ -16,7 +16,7 @@
 
     .leftChartWrapper {
       width: calc(100% - 230px);
-      padding: 18px 0 10px 0;
+      padding: 15px 0 10px 0;
       background: rgb(45, 53, 60);
 
       .head {
@@ -88,7 +88,19 @@
       width: 230px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      // justify-content: space-between;
+      padding: 15px;
+
+      .head {
+        h2 {
+          font-size: 24px;
+        }
+
+        p {
+          font-size: 12px;
+          color: #9ba8b4;
+        }
+      }
     }
   }
 

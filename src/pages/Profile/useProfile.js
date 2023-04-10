@@ -15,7 +15,7 @@ const useProfile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser.id) return;
 
     const unsub = onSnapshot(
       doc(db, "users", currentUser.id),
