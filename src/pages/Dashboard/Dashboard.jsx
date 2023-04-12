@@ -1,6 +1,7 @@
 import PageTopPart from "../../components/ui/PageTopPart/PageTopPart";
+import AreaAndDonutChartCountries from "./AreaAndDonutChartCountries";
 import NewRegisteredUsers from "./NewRegisteredUsers";
-import AreaChartCountries from "./AreaChartCountries";
+import EarthMapCountries from "./EarthMapCountries";
 import s from "./styles.module.scss";
 
 function Dashboard() {
@@ -8,7 +9,8 @@ function Dashboard() {
     <div className={s.container}>
       <PageTopPart title={"Dashboard"} />
       <section className={s.gridContainer}>
-        <AreaChartCountries />
+        <AreaAndDonutChartCountries />
+        <EarthMapCountries />
         <NewRegisteredUsers />
       </section>
     </div>

@@ -33,7 +33,7 @@ const useNewRegisteredUsers = () => {
       }
     };
 
-    getNewRegisteredUsers();
+    // getNewRegisteredUsers();
   }, []);
 
   return {
