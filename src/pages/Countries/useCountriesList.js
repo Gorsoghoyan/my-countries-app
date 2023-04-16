@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { changePlaceholder, changeValue, selectInput, setLocation, toggleInputClose } from "../../store/slices/searchSlice";
-import { collection, getDocs, limit, orderBy, query, startAfter, where, or } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, startAfter, where, or, onSnapshot, updateDoc, doc } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { db } from "../../lib/firebase";
+import { toast } from "react-toastify";
 
-const useCountriesList = (addEditCountryModalRef) => {
+const useCountriesList = () => {
   const [lastVisible, setLastVisible] = useState();
   const [countries, setCountries] = useState([]);
 
@@ -16,18 +17,38 @@ const useCountriesList = (addEditCountryModalRef) => {
   const [seeMore, setSeeMore] = useState(true);
 
   const dataLimit = 100;
-
   const countriesCollection = collection(db, "countries");
+
+  const q = query(countriesCollection, orderBy("name.common"), limit(dataLimit));
+
+  const deleteModalRef = useRef(null);
+  const addModalRef = useRef(null);
+  const editModalRef = useRef(null);
 
   const { value, inputClose } = useSelector(selectInput);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCountries();
     dispatch(changePlaceholder("Search by country or region"));
     dispatch(setLocation("countries"));
 
+    setLoading(true);
+    const unsub = onSnapshot(q, (snapshot) => {
+      const countries = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+
+      const lastVisible = snapshot.docs[snapshot.docs.length - 1];
+
+      setError("");
+      setLoading(false);
+      setLastVisible(lastVisible);
+      setCountries(countries);
+    }, (error) => {
+      setLoading(false);
+      setError(error.message);
+    });
+
     return () => {
+      unsub();
       dispatch(changePlaceholder("Search..."));
       dispatch(setLocation(null));
       dispatch(changeValue(""));
@@ -41,7 +62,7 @@ const useCountriesList = (addEditCountryModalRef) => {
     }
 
     if (!value) return;
-    
+
     getCountryByName(value);
   }, [value]);
 
@@ -130,13 +151,26 @@ const useCountriesList = (addEditCountryModalRef) => {
   }
 
   const editCountry = (id) => {
+    editModalRef.current.open();
+    // editModalRef.current.editId(id);
   };
 
   const deleteCountry = (id) => {
+    deleteModalRef.current.open();
+    deleteModalRef.current.deleteId(id);
   };
 
-  const checkCountry = (id) => {
+  const checkCountry = async (isChecked, id) => {
+    try {
+      await updateDoc(doc(db, "countries", id), {
+        isChecked: !isChecked
+      });
 
+      dispatch(changePlaceholder("Search..."));
+      dispatch(changeValue(""));
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return {
@@ -146,6 +180,9 @@ const useCountriesList = (addEditCountryModalRef) => {
     seeMore,
     dataLimit,
     countries,
+    deleteModalRef,
+    addModalRef,
+    editModalRef,
     checkCountry,
     editCountry,
     deleteCountry,

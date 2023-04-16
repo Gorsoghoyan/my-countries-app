@@ -1,29 +1,63 @@
 import { useEffect, useState } from "react";
+import { useRef } from "react";
 import { db } from "../../lib/firebase";
-import { 
-  collection, endBefore, getDocs, limit, 
-  limitToLast, orderBy, query, startAfter, startAt, where 
+import {
+  collection, endBefore, getDocs, limit,
+  limitToLast, onSnapshot, orderBy, query, startAfter, startAt, where
 } from "firebase/firestore";
 
 const useAccountsList = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   const [searchedUser, setSearchedUser] = useState(false);
   const [allUsersSize, setAllUsersSize] = useState(null);
 
   const [page, setPage] = useState(1);
   const [rows, setRows] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
+
   const [lastVisible, setLastVisible] = useState(null);
   const [firstVisible, setFirstVisible] = useState(null);
-  
+
   const usersCollection = collection(db, "users");
 
+  const deleteModalRef = useRef(null);
+
   useEffect(() => {
-    getUsers();
+    const q = query(
+      usersCollection,
+      where("type", "==", "subUser"),
+      orderBy("createdAt", "desc"),
+      limit(rowsPerPage)
+    );
+
+    setLoading(true);
+    const unsub = onSnapshot(q, async (snapshot) => {
+      if (firstVisible) {
+        const firstVisibleUser = snapshot.docs[0];
+        setFirstVisible(firstVisibleUser);
+      }
+
+      const lastVisibleUser = snapshot.docs[snapshot.docs.length - 1];
+
+      const firstUsers = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+      const allUsers = await getDocs(query(usersCollection, where("type", "==", "subUser")));
+      const allUsersSize = allUsers.size;
+
+      setLastVisible(lastVisibleUser);
+      setAllUsersSize(allUsersSize);
+      setRows(firstUsers);
+
+      setError("");
+      setLoading(false);
+    }, (error) => {
+      setLoading(false);
+      setError(error.message);
+    });
     setPage(1);
+
+    return () => unsub();
   }, [rowsPerPage]);
 
   async function getUsers(firstVisible) {
@@ -31,17 +65,17 @@ const useAccountsList = () => {
     try {
       const first = firstVisible ? (
         query(
-          usersCollection, 
+          usersCollection,
           where("type", "==", "subUser"),
-          orderBy("createdAt", "desc"), 
-          startAt(firstVisible.createdAt), 
+          orderBy("createdAt", "desc"),
+          startAt(firstVisible.createdAt),
           limit(rowsPerPage)
         )
       ) : (
         query(
-          usersCollection, 
-          where("type", "==", "subUser"), 
-          orderBy("createdAt", "desc"), 
+          usersCollection,
+          where("type", "==", "subUser"),
+          orderBy("createdAt", "desc"),
           limit(rowsPerPage)
         )
       );
@@ -54,7 +88,7 @@ const useAccountsList = () => {
       }
 
       const lastVisibleUser = documentSnapshots.docs[documentSnapshots.docs.length - 1];
-  
+
       const firstUsers = documentSnapshots.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       const allUsers = await getDocs(query(usersCollection, where("type", "==", "subUser")));
       const allUsersSize = allUsers.size;
@@ -75,9 +109,9 @@ const useAccountsList = () => {
     setLoading(true);
     try {
       const next = query(
-        usersCollection, 
+        usersCollection,
         where("type", "==", "subUser"),
-        orderBy("createdAt", "desc"), 
+        orderBy("createdAt", "desc"),
         startAfter(lastVisible),
         limit(rowsPerPage)
       );
@@ -106,9 +140,9 @@ const useAccountsList = () => {
     setLoading(true);
     try {
       const prev = query(
-        usersCollection, 
+        usersCollection,
         where("type", "==", "subUser"),
-        orderBy("createdAt", "desc"), 
+        orderBy("createdAt", "desc"),
         endBefore(firstVisible),
         limitToLast(rowsPerPage)
       );
@@ -135,7 +169,7 @@ const useAccountsList = () => {
 
   const handleChangePage = (arrow) => {
     if (searchedUser) {
-      filterData();      
+      filterData();
       setSearchedUser(false);
       return;
     }
@@ -163,6 +197,19 @@ const useAccountsList = () => {
     setSearchedUser(toggle);
   };
 
+  const deleteAccount = (id) => {
+    deleteModalRef.current.open();
+    deleteModalRef.current.deleteId(id);
+  };
+
+  const editAccount = (id) => {
+
+  };
+
+  const addAccount = () => {
+
+  };
+
   return {
     error,
     loading,
@@ -171,6 +218,10 @@ const useAccountsList = () => {
     rowsPerPage,
     searchedUser,
     allUsersSize,
+    deleteModalRef,
+    addAccount,
+    editAccount,
+    deleteAccount,
     filterData,
     handleChangePage,
     handleSearchedUser,

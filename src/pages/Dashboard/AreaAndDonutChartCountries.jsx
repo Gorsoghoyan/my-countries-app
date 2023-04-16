@@ -1,5 +1,4 @@
 import ReactApexChart from "react-apexcharts";
-import Toast from "../../components/ui/Toast/Toast";
 import GridItem from "../../components/ui/GridItem/GridItem";
 import useAreaChartCountries from "./useAreaAndDonutChartCountries";
 import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
@@ -148,7 +147,6 @@ function AreaAndDonutChartCountries() {
           />
         )}
       </div>
-      <Toast />
     </GridItem>
   );
 };

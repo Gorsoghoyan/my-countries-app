@@ -12,7 +12,8 @@
 
 // auth
 .a-l,
-.a-r {
+.a-r,
+.d-c {
   height: 45px;
   border-radius: 5px;
   font-size: 15p;
@@ -42,6 +43,20 @@
     $blue-btn-hover-color, 
     $blue-btn-focus-box-shadow
   );
+}
+
+// delete cacel
+.d-c {
+  @include mixins.button(
+    100%,
+    0,
+    $app-theme2, 
+    red, 
+    rgb(221, 0, 0), 
+    rgb(221, 0, 0), 
+    0 0 0 0.25rem rgba(rgb(221, 0, 0), .5)
+  );
+  margin-left: 10px;
 }
 
 // error page

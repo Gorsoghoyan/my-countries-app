@@ -1,26 +1,42 @@
-import { useEffect, useImperativeHandle, useState } from "react";
+import { deleteDoc, doc } from "firebase/firestore";
+import { useImperativeHandle, useRef, useState } from "react";
+import { db } from "../../../../lib/firebase";
+import { toast } from "react-toastify";
 
-const useDeleteModal = (type, deleteRef) => {
-  const [id, setId] = useState("");
+const useDeleteModal = (collection, ref) => {
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (!id) return;
-    if (type === "d-country") {
-      console.log("country", id);
-    } 
-    if (type === "d-subUser") {
-      console.log("subUser", id);
-    }
-  }, [id]);
+  const ModalRef = useRef(null);
 
-  useImperativeHandle(deleteRef, () => {
+  let id = "";
+
+  useImperativeHandle(ref, () => {
     return {
-      setId: (id) => setId(id)
+      open: () => ModalRef.current.open(),
+      close: () => ModalRef.current.close(),
+      deleteId: (deleteId) => {
+        id = deleteId;
+      }
     };
   });
 
-  return {
+  const deleteDocument = async () => {
+    setLoading(true);
+    try {
+      await deleteDoc(doc(db, collection, id));
 
+      setLoading(false);
+      ModalRef.current.close();
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message);
+    }
+  };
+
+  return {
+    loading,
+    ModalRef,
+    deleteDocument
   };
 };
 

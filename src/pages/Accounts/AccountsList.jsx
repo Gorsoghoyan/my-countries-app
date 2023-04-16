@@ -13,6 +13,7 @@ import defaultAvatar from "../../assets/images/profile.png";
 import useAccountsList from "./useAccountsList";
 import v from "../../assets/sass/_variables.scss";
 import s from "./styles.module.scss";
+import DeleteModal from "../../components/ui/Modals/DeleteModal/DeleteModal";
 
 function AccountsList() {
   const {
@@ -23,6 +24,10 @@ function AccountsList() {
     rowsPerPage,
     searchedUser,
     allUsersSize,
+    deleteModalRef,
+    addAccount,
+    editAccount,
+    deleteAccount,
     filterData,
     handleChangePage,
     handleSearchedUser,
@@ -40,10 +45,7 @@ function AccountsList() {
           handleSearchedUser={handleSearchedUser}
           getOptionLabel={(row) => row.displayName || ""}
         />
-        <Button
-          variant="add-user"
-          onClick={() => ""}
-        >
+        <Button variant="add-user" onClick={addAccount}>
           <AiOutlinePlus />Add
         </Button>
       </Stack>
@@ -103,8 +105,8 @@ function AccountsList() {
                   </TableBodyCell>
                   <TableBodyCell data-label={columns[3].title}>
                     <Stack className={s.actions}>
-                      <MdModeEditOutline onClick={() => ""} />
-                      <MdDelete onClick={() => ""} />
+                      <MdModeEditOutline onClick={() => editAccount(row.id)} />
+                      <MdDelete onClick={() => deleteAccount(row.id)} />
                     </Stack>
                   </TableBodyCell>
                 </TableRow>
@@ -123,6 +125,7 @@ function AccountsList() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <DeleteModal ref={deleteModalRef} collection={"users"} />
     </Paper>
   );
 }

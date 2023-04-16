@@ -6,7 +6,9 @@ import Button from "../../components/ui/Button/Button";
 import Spinner from "../../components/ui/Spinner/Spinner";
 import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
 import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
+import DeleteModal from "../../components/ui/Modals/DeleteModal/DeleteModal";
 import s from "./styles.module.scss";
+import AddEditCountryModal from "../../components/ui/Modals/AddEditCountryModal/AddEditCountryModal";
 
 function CountriesList() {
   const {
@@ -16,6 +18,8 @@ function CountriesList() {
     seeMore,
     dataLimit,
     countries,
+    deleteModalRef,
+    editModalRef,
     checkCountry,
     editCountry,
     deleteCountry,
@@ -49,6 +53,7 @@ function CountriesList() {
               ? country.capital[0]
               : "Has no capital city"
             }
+            isChecked={country.isChecked}
             checkCountry={checkCountry}
             deleteCountry={deleteCountry}
             editCountry={editCountry}
@@ -65,6 +70,9 @@ function CountriesList() {
           {btnLoading && <Spinner size={18} />}
         </Button>
       )}
+      <DeleteModal ref={deleteModalRef} collection={"countries"} />
+      <AddEditCountryModal type="add" />
+      <AddEditCountryModal ref={editModalRef} type="edit" />
     </Fragment>
   );
 }

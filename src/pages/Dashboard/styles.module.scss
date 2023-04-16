@@ -156,6 +156,8 @@
   }
 
   .earthMapCountries {
+    .checkedCountriesWrapper {
+    }
   }
 }
 
@@ -165,8 +167,13 @@
   align-items: center;
   padding: 12px 15px;
   font-size: 13px;
-  font-weight: 600;
   color: white;
+
+  &.hover {
+    &:hover {
+      background: #495057;
+    }
+  }
 
   &.v-1 {
     background: #495057;
@@ -202,7 +209,10 @@
   .container {
     .gridContainer {
       grid-template-columns: repeat(2, 1fr);
-      color: #6b6969;
+    }
+
+    .areaChartCountries {
+      grid-column: 1 / 3;
     }
   }
 }
@@ -210,13 +220,10 @@
 @media screen and (max-width: 767px) {
   .container {
     padding: 20px 10px;
-
-    .gridContainer {
-      grid-template-columns: 1fr;
-    }
-
-    .areaChartCountries {
-      grid-column: 1 / 1;
+    
+    .newUsersContainer,
+    .earthMapCountries {
+      grid-column: 1 / 3;
     }
   }
 }

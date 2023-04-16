@@ -6,7 +6,7 @@ import s from "./styles.module.scss";
 import c from "classnames";
 
 const Modal = forwardRef(({ className, closeWithin, children }, ref) => {
-  const { open, clickRef, handleClose } = useModal(ref);
+  const { open, clickRef, handleClose } = useModal(ref); 
 
   return (
     <AnimatePresence mode="wait">

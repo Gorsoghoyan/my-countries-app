@@ -2,7 +2,7 @@ import GridItem from "../../components/ui/GridItem/GridItem";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import { SELECT_COUNTRY_TITLE } from "../../utils/constants";
 import { BiSelectMultiple } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiOutlineCheck } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
 import s from "./styles.module.scss";
 
@@ -13,6 +13,7 @@ function CountryItem({
   flagURL,
   capital,
   population,
+  isChecked,
   checkCountry,
   editCountry,
   deleteCountry
@@ -21,6 +22,12 @@ function CountryItem({
     <GridItem className={s.countryItem} variant={"c-i"}>
       <ImageDiv variant={"c-i"} image={flagURL}>
         <div className={s.bgEffect}></div>
+        {isChecked && (
+          <AiOutlineCheck
+            className={s.checkedIcon} 
+            title={`${name} is selected`} 
+          />
+        )}
       </ImageDiv>
       <div className={s.countryInfo}>
         <h2>{name}</h2>
@@ -34,7 +41,7 @@ function CountryItem({
       <div className={s.actions}>
         <BiSelectMultiple 
           title={SELECT_COUNTRY_TITLE} 
-          onClick={() => checkCountry(id)} 
+          onClick={() => checkCountry(isChecked, id)} 
         />
         <MdEdit onClick={() => editCountry(id)} />
         <AiFillDelete onClick={() => deleteCountry(id)} />
