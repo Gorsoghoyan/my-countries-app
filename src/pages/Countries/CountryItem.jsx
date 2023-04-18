@@ -22,12 +22,6 @@ function CountryItem({
     <GridItem className={s.countryItem} variant={"c-i"}>
       <ImageDiv variant={"c-i"} image={flagURL}>
         <div className={s.bgEffect}></div>
-        {isChecked && (
-          <AiOutlineCheck
-            className={s.checkedIcon} 
-            title={`${name} is selected`} 
-          />
-        )}
       </ImageDiv>
       <div className={s.countryInfo}>
         <h2>{name}</h2>
@@ -41,7 +35,7 @@ function CountryItem({
       <div className={s.actions}>
         <BiSelectMultiple 
           title={SELECT_COUNTRY_TITLE} 
-          onClick={() => checkCountry(isChecked, id)} 
+          onClick={() => checkCountry(name, isChecked, id)} 
         />
         <MdEdit onClick={() => editCountry(id)} />
         <AiFillDelete onClick={() => deleteCountry(id)} />

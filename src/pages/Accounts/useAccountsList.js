@@ -15,7 +15,7 @@ const useAccountsList = () => {
 
   const [page, setPage] = useState(1);
   const [rows, setRows] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5 );
 
   const [lastVisible, setLastVisible] = useState(null);
   const [firstVisible, setFirstVisible] = useState(null);
@@ -34,6 +34,7 @@ const useAccountsList = () => {
 
     setLoading(true);
     const unsub = onSnapshot(q, async (snapshot) => {
+
       if (firstVisible) {
         const firstVisibleUser = snapshot.docs[0];
         setFirstVisible(firstVisibleUser);

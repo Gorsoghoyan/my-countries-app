@@ -41,8 +41,8 @@ const useCountriesList = () => {
       setError("");
       setLoading(false);
       setLastVisible(lastVisible);
-      setCountries(countries);
-    }, (error) => {
+      setCountries(prev => [ ...countries ]);
+    }, (error) => {     
       setLoading(false);
       setError(error.message);
     });
@@ -160,11 +160,15 @@ const useCountriesList = () => {
     deleteModalRef.current.deleteId(id);
   };
 
-  const checkCountry = async (isChecked, id) => {
+  const checkCountry = async (name, isChecked, id) => {
     try {
       await updateDoc(doc(db, "countries", id), {
         isChecked: !isChecked
       });
+
+      isChecked 
+        ? toast.info(`You remove ${name} from the selected ones`)
+        : toast.info(`You select ${name}`);
 
       dispatch(changePlaceholder("Search..."));
       dispatch(changeValue(""));

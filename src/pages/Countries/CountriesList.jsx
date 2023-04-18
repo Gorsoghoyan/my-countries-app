@@ -9,6 +9,7 @@ import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoad
 import DeleteModal from "../../components/ui/Modals/DeleteModal/DeleteModal";
 import s from "./styles.module.scss";
 import AddEditCountryModal from "../../components/ui/Modals/AddEditCountryModal/AddEditCountryModal";
+import Toast from "../../components/ui/Toast/Toast";
 
 function CountriesList() {
   const {
@@ -73,6 +74,7 @@ function CountriesList() {
       <DeleteModal ref={deleteModalRef} collection={"countries"} />
       <AddEditCountryModal type="add" />
       <AddEditCountryModal ref={editModalRef} type="edit" />
+      <Toast type="info" />
     </Fragment>
   );
 }
