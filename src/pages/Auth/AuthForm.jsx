@@ -19,6 +19,7 @@ function AuthForm({ type, inputs, initialData, btnText, btnVariant }) {
       {inputs.map(input => (
         <InputLabel 
           key={input.id}
+          variant={"auth"}
           id={input.id}
           type={input.type}
           name={input.name}

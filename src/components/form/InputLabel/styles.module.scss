@@ -1,6 +1,6 @@
 @import "../../../assets/sass/variables";
 
-.wrapper {
+.auth {
   position: relative;
   margin-bottom: 25px;
   & input:focus ~ label,
@@ -18,8 +18,8 @@
     height: 45px;
     border-radius: 6px;
     outline: none;
-    border: 1px solid $auth-input-border-color;
     background: transparent;
+    border: 1px solid $auth-input-border-color;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
     &:focus {
@@ -38,5 +38,23 @@
     color: $auth-gray-600;
     transition: 0.3s;
     cursor: text;
+  }
+}
+
+.countryModal {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 10px;
+
+  label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid silver;
   }
 }
