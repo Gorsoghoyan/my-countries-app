@@ -5,12 +5,16 @@ function HorizontalItem({
   title, 
   hover, 
   fontSize, 
+  borderBottom,
   bgVariant, 
   badge, 
   badgeBgVariant 
 }) {
   return (
-    <div className={c(s.horizontalItem, s[bgVariant], s[hover ? "hover" : ""])}>
+    <div 
+      style={{ borderBottom }}
+      className={c(s.horizontalItem, s[bgVariant], s[hover ? "hover" : ""])}
+    >
       <p style={{ fontSize }}>{title}</p>
       {badge && <span className={s[badgeBgVariant]}>{badge}</span>}
     </div>

@@ -5,17 +5,16 @@
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(1, 1, 1, 0.362);
+  min-height: 100vh;
+  background: rgba(1, 1, 1, 0.63);
   @include mixins.flex-center;
   z-index: 100000;
 
   .modalDialog {
     position: relative;
-    max-width: 80vw;
     min-width: 500px;
     border-radius: 5px;
-    overflow: hidden;
+    margin: 40px 0;
     color: black;
     background: white;
 
@@ -30,8 +29,6 @@
       }
 
       .modalContentBody {
-        max-height: 90vh;
-        overflow: auto; 
         padding: 20px;
       }
     }
@@ -41,17 +38,16 @@
 @media screen and (max-width: 600px) {
   .modalBackdrop {
     .modalDialog {
-      width: 100vw;
-      height: 100vh;
-      min-width: none;
-      max-width : none;
+      width: 100vw !important;
+      height: 100vh !important;
+      min-width: none !important;
+      max-width: none !important;
+      overflow: auto;
       border-radius: 0;
+      margin: 0;
 
       .modalContent {
-        .modalContentBody {
-          height: 100vh;
-          max-height: none;
-        }
+        margin-bottom: 40px;
       }
     }
   }

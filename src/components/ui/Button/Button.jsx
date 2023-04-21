@@ -5,14 +5,15 @@ function Button({
   children,
   variant,
   type,
+  disabled,
+  onClick,
   width,
   height,
-  borderRadius,
   fontSize,
+  margin,
+  borderRadius,
   color,
   background,
-  disabled,
-  onClick
 }) {
 
   return (
@@ -22,7 +23,13 @@ function Button({
       disabled={disabled}
       onClick={onClick}
       style={{
-        width, height, fontSize, color, background, borderRadius
+        width, 
+        height, 
+        fontSize, 
+        color, 
+        background, 
+        borderRadius, 
+        margin
       }}
     >
       {children}

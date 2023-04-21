@@ -52,6 +52,7 @@ function EarthMapCountries() {
             hover
             fontSize={12}
             title={`${index + 1}. ${country.name.common}`}
+            borderBottom={"1px solid #20252a"}
             badge={numFormatter(country.area)}
             badgeBgVariant={"v-1"}
           />

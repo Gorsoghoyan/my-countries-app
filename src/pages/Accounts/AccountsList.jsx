@@ -8,12 +8,13 @@ import { columns } from "../../configs/accounts";
 import Button from "../../components/ui/Button/Button";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
 import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
+import AddEditSubUserModal from "../../components/ui/Modals/AddEditSubUserModal/AddEditSubUserModal";
 import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
+import DeleteModal from "../../components/ui/Modals/DeleteModal/DeleteModal";
 import defaultAvatar from "../../assets/images/profile.png";
 import useAccountsList from "./useAccountsList";
 import v from "../../assets/sass/_variables.scss";
 import s from "./styles.module.scss";
-import DeleteModal from "../../components/ui/Modals/DeleteModal/DeleteModal";
 
 function AccountsList() {
   const {
@@ -25,6 +26,7 @@ function AccountsList() {
     searchedUser,
     allUsersSize,
     deleteModalRef,
+    editModalRef,
     addAccount,
     editAccount,
     deleteAccount,
@@ -85,7 +87,7 @@ function AccountsList() {
               {rows.map((row, index) => (
                 <TableRow key={row.id}>
                   <TableBodyCell data-label={columns[0].title}>
-                    {index + 1}
+                    {index + 1}.
                   </TableBodyCell>
                   <TableBodyCell
                     data-label={columns[1].title}
@@ -126,6 +128,7 @@ function AccountsList() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
       <DeleteModal ref={deleteModalRef} collection={"users"} />
+      <AddEditSubUserModal ref={editModalRef} />
     </Paper>
   );
 }

@@ -1,12 +1,17 @@
+import { forwardRef } from "react";
+import { countryInputs } from "../../../../configs/modals";
 import useAddEditCountryModal from "./useAddEditCountryModal";
 import InputLabel from "../../../form/InputLabel/InputLabel";
+import Button from "../../Button/Button";
 import Modal from "../Modal";
-import { forwardRef } from "react";
 import s from "./styles.module.scss";
-import { countryInputs } from "../../../../configs/modals";
 
 const AddEditCountryModal = forwardRef(({ type }, ref) => {
-  const { ModalRef } = useAddEditCountryModal(type, ref);
+  const { 
+    ModalRef, 
+    handleChange, 
+    handleSubmit 
+  } = useAddEditCountryModal(type, ref);
 
   return (
     <Modal  
@@ -14,8 +19,8 @@ const AddEditCountryModal = forwardRef(({ type }, ref) => {
       closeWithin
       className={s.container} 
     >
-      <h2>Add Country</h2>
-      <form>
+      <h2>Add country</h2>
+      <form onSubmit={handleSubmit}>
         {countryInputs.map(input => (
           <InputLabel 
             key={input.id}
@@ -25,8 +30,12 @@ const AddEditCountryModal = forwardRef(({ type }, ref) => {
             variant={"countryModal"}
             placeholder={input.placeholder}
             inpPlaceholder={input.inpPlaceholder}
+            onChange={(e) => handleChange(e, input.special)}
           />
         ))}
+        <Button variant={"a-r"} margin={"20px 0 0 0"}>
+          Add
+        </Button>
       </form>
     </Modal>
   );

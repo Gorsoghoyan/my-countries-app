@@ -5,11 +5,11 @@ import CountryItem from "./CountryItem";
 import Button from "../../components/ui/Button/Button";
 import Spinner from "../../components/ui/Spinner/Spinner";
 import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
+import AddEditCountryModal from "../../components/ui/Modals/AddEditCountryModal/AddEditCountryModal";
 import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
 import DeleteModal from "../../components/ui/Modals/DeleteModal/DeleteModal";
-import s from "./styles.module.scss";
-import AddEditCountryModal from "../../components/ui/Modals/AddEditCountryModal/AddEditCountryModal";
 import Toast from "../../components/ui/Toast/Toast";
+import s from "./styles.module.scss";
 
 function CountriesList() {
   const {

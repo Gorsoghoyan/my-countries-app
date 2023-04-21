@@ -82,7 +82,7 @@ $blue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($blue-btn-hover-color, .5);
 $darkBlue-btn-bg: #348fe2;
 $darkBlue-btn-hover-color: #276baa;
 $darkBlue-btn-focus-box-shadow: 0 0 0 0.25rem rgba($darkBlue-btn-hover-color, .5);
-$silver-btn-focus-box-shadow: 0 0 0 0.25rem rgba(silver, .2);
+$silver-btn-focus-box-shadow: 0 0 0 0.25rem rgba(rgba(135, 135, 135, 0.603), .2);
 $search-icon-btn-color: #343a3f;
 $add-user-btn-bg: #009797;
 $add-country-btn-bg: #009797;
@@ -110,4 +110,5 @@ $page-min-height: calc(100vh - $header-height);
   noItemBg: $autocomplete-no-item-bg;
   populationFill: $countries-chart-population-fill-color;
   areaFill: $countries-chart-area-fill-color;
+  appTheme1: $app-theme1;
 }

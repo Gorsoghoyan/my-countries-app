@@ -25,7 +25,7 @@ function Profile() {
               disabled={perc !== null && perc < 100}
               handleFileChange={handleFileChange}
             >
-              Edit phot
+              Edit photo
             </FileUploadBtn>
           </div>
         </div>

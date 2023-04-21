@@ -32,7 +32,6 @@ const useNewRegisteredUsers = () => {
         setError(error.message);
       }
     };
-
     // getNewRegisteredUsers();
   }, []);
 

@@ -4,9 +4,9 @@ import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoad
 import ErrorMessage from "../../components/ui/ErrorMessage/ErrorMessage";
 import GridItem from "../../components/ui/GridItem/GridItem";
 import ImageDiv from "../../components/ui/ImageDiv/ImageDiv";
-import HorizontalItem from "./HorizontalItem";
 import defaultPhoto from "../../assets/images/profile.png";
 import useNewRegisteredUsers from "./useNewRegisteredUsers";
+import HorizontalItem from "./HorizontalItem";
 import s from "./styles.module.scss";
 
 function NewRegisteredUsers() {
@@ -42,14 +42,9 @@ function NewRegisteredUsers() {
             error={error || "There are no sub-users"}
           />
         )}
-        {loading   && (
-          <ComponentLoading size={40} />
-        )}
+        {loading && <ComponentLoading size={40} />}
       </div>
-      <div>
-        <hr />
-        <Link to={ACCOUNTS.LINK}>View All</Link>
-      </div>
+      <div><hr /><Link to={ACCOUNTS.LINK}>View All</Link></div>
     </GridItem>
   );
 }
