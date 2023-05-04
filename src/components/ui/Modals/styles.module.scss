@@ -8,11 +8,14 @@
   min-height: 100vh;
   background: rgba(1, 1, 1, 0.63);
   @include mixins.flex-center;
-  z-index: 100000;
+  overflow: auto;
+  z-index: 100000; 
 
   .modalDialog {
     position: relative;
     min-width: 500px;
+    max-height: 90vh;
+    overflow: auto;
     border-radius: 5px;
     margin: 40px 0;
     color: black;
@@ -40,8 +43,7 @@
     .modalDialog {
       width: 100vw !important;
       height: 100vh !important;
-      min-width: none !important;
-      max-width: none !important;
+      max-height: none !important;
       overflow: auto;
       border-radius: 0;
       margin: 0;

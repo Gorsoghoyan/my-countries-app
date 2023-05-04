@@ -1,5 +1,5 @@
 .container {
-  min-width: 600px;
+  width: 600px;
   
   h2 {
     font-size: 25px;
@@ -9,6 +9,6 @@
 
 @media screen and (max-width: 600px) {
   .container {
-    min-width: inherit;
+    width: inherit;
   }
 }

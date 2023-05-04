@@ -22,7 +22,6 @@ const useCountriesList = () => {
   const q = query(countriesCollection, orderBy("name.common"), limit(dataLimit));
 
   const deleteModalRef = useRef(null);
-  const addModalRef = useRef(null);
   const editModalRef = useRef(null);
 
   const { value, inputClose } = useSelector(selectInput);
@@ -63,7 +62,7 @@ const useCountriesList = () => {
 
     if (!value) return;
 
-    getCountryByName(value);
+    getCountryByNameOrRegion(value);
   }, [value]);
 
   async function getCountries() {
@@ -125,7 +124,7 @@ const useCountriesList = () => {
     }
   }
 
-  async function getCountryByName(value) {
+  async function getCountryByNameOrRegion(value) {
     setLoading(true);
     try {
       const q = query(
@@ -152,7 +151,7 @@ const useCountriesList = () => {
 
   const editCountry = (id) => {
     editModalRef.current.open();
-    // editModalRef.current.editId(id);
+    editModalRef.current.editId(id);
   };
 
   const deleteCountry = (id) => {
@@ -185,7 +184,6 @@ const useCountriesList = () => {
     dataLimit,
     countries,
     deleteModalRef,
-    addModalRef,
     editModalRef,
     checkCountry,
     editCountry,

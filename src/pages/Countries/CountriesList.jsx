@@ -71,10 +71,9 @@ function CountriesList() {
           {btnLoading && <Spinner size={18} />}
         </Button>
       )}
-      <DeleteModal ref={deleteModalRef} collection={"countries"} />
-      <AddEditCountryModal type="add" />
-      <AddEditCountryModal ref={editModalRef} type="edit" />
       <Toast type="info" />
+      <DeleteModal ref={deleteModalRef} collection={"countries"} />
+      <AddEditCountryModal ref={editModalRef} type="edit" />
     </Fragment>
   );
 }

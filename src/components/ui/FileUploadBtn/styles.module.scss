@@ -1,3 +1,4 @@
+@use "../../../assets/sass/mixins";
 @import "../../../assets/sass/variables";
 
 .fileUpload {
@@ -34,5 +35,28 @@
 
   svg {
     margin-left: 5px;
+  }
+}
+
+.m {
+  width: 100%;
+  height: 45px;
+  margin-top: 20px;
+  font-size: 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: $darkBlue-btn-bg;
+  transition: background-color .2s linear;
+
+  &:hover {
+    background: $darkBlue-btn-hover-color;
+  }
+
+  svg {
+    font-size: 20px;
+    margin-left: 10px;
   }
 }
