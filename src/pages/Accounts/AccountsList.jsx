@@ -26,6 +26,7 @@ function AccountsList() {
     searchedUser,
     allUsersSize,
     deleteModalRef,
+    addModalRef,
     editModalRef,
     addAccount,
     editAccount,
@@ -123,12 +124,13 @@ function AccountsList() {
         page={page}
         count={allUsersSize}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5, 25, 75]}
+        rowsPerPageOptions={[10, 25, 75]}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
       <DeleteModal ref={deleteModalRef} collection={"users"} />
-      <AddEditSubUserModal ref={editModalRef} />
+      <AddEditSubUserModal ref={editModalRef} type="edit" />
+      <AddEditSubUserModal ref={addModalRef} type="add" />
     </Paper>
   );
 }

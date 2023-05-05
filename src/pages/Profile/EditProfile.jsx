@@ -21,7 +21,7 @@ function EditProfile() {
       <h2>Edit profile</h2>
       {error && <ErrorMessage error={error} textAlign={"left"} />}
       <hr />
-        <h3>Personal</h3>
+        <h3>Personal information</h3>
       <hr className={s.hrBottom} />
       {personalInfoInputs.map(input => (
         <Input 

@@ -20,6 +20,7 @@ const AddEditCountryModal = forwardRef(({ type }, ref) => {
     photoURL,
     ModalRef,
     countryData,
+    target,
     handleChange,
     handleSubmit,
     handleFileChange
@@ -31,7 +32,7 @@ const AddEditCountryModal = forwardRef(({ type }, ref) => {
       closeWithin
       className={s.container}
     >
-      <h2>Add country</h2>
+      <h2>{target.title}</h2>
       <form onSubmit={handleSubmit}>
         {countryInputs.map(input => (
           <InputLabel
@@ -39,7 +40,7 @@ const AddEditCountryModal = forwardRef(({ type }, ref) => {
             id={input.id}
             type={input.type}
             name={input.name}
-            variant={"countryModal"}
+            variant={"modal"}
             value={
               input.special === "name"
                 ? countryData.name.common
@@ -72,7 +73,7 @@ const AddEditCountryModal = forwardRef(({ type }, ref) => {
         </FileUploadBtn>
         {error && <ErrorMessage margin={"20px 0 0 0"} error={error} />}
         <Button variant={"a-r"} margin={"20px 0 0 0"}>
-          {loading ? <Spinner /> : "Add"}
+          {loading ? <Spinner /> : target.btnText}
         </Button>
       </form>
     </Modal>

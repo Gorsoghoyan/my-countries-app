@@ -5,16 +5,14 @@ import { toast } from "react-toastify";
 
 const useEarthMapCountries = () => {
   const [checkedCountries, setCheckedCountries] = useState({});
-  const [theBiggestCountries, setTheBiggestCountries] = useState([
-    {id: 1, name: { common: "Russia" }, area: 12221213 },
-    {id: 2, name: { common: "Antarcitda" }, area: 1241241 },
-    {id: 3, name: { common: "Columbia" }, area: 82398 }
-  ]);
+  const [theBiggestCountries, setTheBiggestCountries] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const countriesCollection = collection(db, "countries");
 
   useEffect(() => {
     const getCheckedCountries = async () => {
+      setLoading(true);
       try {
         const q1 = query(
           countriesCollection,
@@ -40,9 +38,12 @@ const useEarthMapCountries = () => {
 
         const theBiggestCountries = documentSnapshots2.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
+        setLoading(false);
+
         setCheckedCountries(countriesValues);
         setTheBiggestCountries(theBiggestCountries);
       } catch (error) {
+        setLoading(false);
         toast.error(error.message);
       }
     };
@@ -50,6 +51,7 @@ const useEarthMapCountries = () => {
   }, []);
 
   return {
+    loading,
     checkedCountries,
     theBiggestCountries,
   };

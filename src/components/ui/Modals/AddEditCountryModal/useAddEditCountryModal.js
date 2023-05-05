@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { uploadImageAPI } from "../../../../utils/api";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addCountryModal, editCountryModal } from "../../../../configs/modals";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useImperativeHandle, useRef, useState } from "react";
 import { db } from "../../../../lib/firebase";
 import { toast } from "react-toastify";
@@ -12,7 +13,6 @@ const initialData = {
   region: "",
   area: "",
   population: null,
-  isChecked: false
 };
 
 const useAddEditCountryModal = (type, ref) => {
@@ -27,6 +27,8 @@ const useAddEditCountryModal = (type, ref) => {
 
   const ModalRef = useRef(null);
 
+  const target = type === "add" ? addCountryModal : editCountryModal;
+
   useImperativeHandle(ref, () => {
     return {
       open: () => ModalRef.current.open(),
@@ -35,7 +37,8 @@ const useAddEditCountryModal = (type, ref) => {
         setCountryData(initialData);
         setPhotoURL("");
         setPerc(null);
-        setError("")
+        setEditId("");
+        setError("");
         setLoading(false);
       },
       editId: (id) => setEditId(id)
@@ -56,8 +59,6 @@ const useAddEditCountryModal = (type, ref) => {
         if (docSnap.exists()) {
           setCountryData(docSnap.data());
           setPhotoURL(docSnap.data().flags.png);
-        } else {
-          console.log("a")
         }
       } catch (error) {
         toast.error(error.message);
@@ -93,7 +94,8 @@ const useAddEditCountryModal = (type, ref) => {
     setLoading(true);
     try {
       await addDoc(collection(db, "countries"), {
-        ...newCountry
+        ...newCountry,
+        isChecked: false
       });
       
       setError("");
@@ -108,6 +110,9 @@ const useAddEditCountryModal = (type, ref) => {
   const editCountryAPI = async (editCountry) => {
     setLoading(true);
     try {
+      await updateDoc(doc(db, "countries", editId), {
+        ...editCountry
+      });
       
       setError("");
       setLoading(false);
@@ -151,6 +156,7 @@ const useAddEditCountryModal = (type, ref) => {
     perc,
     ModalRef,
     countryData,
+    target,
     handleChange,
     handleSubmit,
     handleFileChange

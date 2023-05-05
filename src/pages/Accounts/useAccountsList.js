@@ -15,7 +15,7 @@ const useAccountsList = () => {
 
   const [page, setPage] = useState(1);
   const [rows, setRows] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const [lastVisible, setLastVisible] = useState(null);
   const [firstVisible, setFirstVisible] = useState(null);
@@ -23,6 +23,7 @@ const useAccountsList = () => {
   const usersCollection = collection(db, "users");
 
   const deleteModalRef = useRef(null);
+  const addModalRef = useRef(null);
   const editModalRef = useRef(null);
 
   useEffect(() => {
@@ -206,10 +207,11 @@ const useAccountsList = () => {
 
   const editAccount = (id) => {
     editModalRef.current.open();
+    editModalRef.current.editId(id);
   };
 
   const addAccount = () => {
-
+    addModalRef.current.open();
   };
 
   return {
@@ -221,6 +223,7 @@ const useAccountsList = () => {
     searchedUser,
     allUsersSize,
     deleteModalRef,
+    addModalRef,
     editModalRef,
     addAccount,
     editAccount,

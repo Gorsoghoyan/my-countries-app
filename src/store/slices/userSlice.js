@@ -13,7 +13,8 @@ export const userSlice = createSlice({
         id: payload.id,
         displayName: payload.displayName,
         createdAt: payload.createdAt,
-        photoURL: payload.photoURL
+        photoURL: payload.photoURL,
+        permissions: payload.permissions
       };
 
       localStorage.setItem("user", JSON.stringify(userConfig));

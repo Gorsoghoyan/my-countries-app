@@ -1,19 +1,15 @@
 import { VectorMap } from "react-jvectormap";
 import { numFormatter } from "../../utils/numFormatter";
+import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoading";
 import useEarthMapCountries from "./useEarthMapCountries";
 import GridItem from "../../components/ui/GridItem/GridItem";
 import HorizontalItem from "./HorizontalItem";
-import s from "./styles.module.scss";
 
 function EarthMapCountries() {
-  const { checkedCountries, theBiggestCountries } = useEarthMapCountries();
+  const { checkedCountries, theBiggestCountries, loading } = useEarthMapCountries();
 
   return (
-    <GridItem
-      className={s.earthMapCountries}
-      variant={"d-i-column"}
-      bg={"d-i-bg-1"}
-    >
+    <GridItem variant={"d-i-column"} bg={"d-i-bg-1"}>
       <HorizontalItem
         bgVariant={"v-1"}
         title={"Your checked countries"}
@@ -37,7 +33,7 @@ function EarthMapCountries() {
         series={{
           regions: [
             {
-              scale: ["#348fe2", "#00acac", "#ffffff"],
+              scale: ["#348fe2", "#00acac"],
               values: checkedCountries,
               min: 0,
               max: 100
@@ -45,7 +41,7 @@ function EarthMapCountries() {
           ]
         }}
       />
-      <div className={s.checkedCountriesWrapper}>
+      <div>
         {theBiggestCountries?.map((country, index) => (
           <HorizontalItem 
             key={country.id}
@@ -57,7 +53,8 @@ function EarthMapCountries() {
             badgeBgVariant={"v-1"}
           />
         ))}
-      </div>
+        {loading && <ComponentLoading size={40} marginTop={45} />}
+      </div>  
     </GridItem>
   );
 }

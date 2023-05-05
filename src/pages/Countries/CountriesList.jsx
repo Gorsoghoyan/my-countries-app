@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { NO_COUNTRIES_MESSAGE } from "../../utils/constants";
+import { contains } from "../../utils/contains";
 import useCountriesList from "./useCountriesList";
 import CountryItem from "./CountryItem";
 import Button from "../../components/ui/Button/Button";
@@ -11,7 +12,7 @@ import DeleteModal from "../../components/ui/Modals/DeleteModal/DeleteModal";
 import Toast from "../../components/ui/Toast/Toast";
 import s from "./styles.module.scss";
 
-function CountriesList() {
+function CountriesList({ permissions }) {
   const {
     error,
     loading,
@@ -55,6 +56,7 @@ function CountriesList() {
               : "Has no capital city"
             }
             isChecked={country.isChecked}
+            permissions={permissions}
             checkCountry={checkCountry}
             deleteCountry={deleteCountry}
             editCountry={editCountry}
@@ -72,8 +74,12 @@ function CountriesList() {
         </Button>
       )}
       <Toast type="info" />
-      <DeleteModal ref={deleteModalRef} collection={"countries"} />
-      <AddEditCountryModal ref={editModalRef} type="edit" />
+      {contains(permissions, "delete") && (
+        <DeleteModal ref={deleteModalRef} collection={"countries"} />
+      )}
+      {contains(permissions, "edit") && (
+        <AddEditCountryModal ref={editModalRef} type="edit" />
+      )}
     </Fragment>
   );
 }

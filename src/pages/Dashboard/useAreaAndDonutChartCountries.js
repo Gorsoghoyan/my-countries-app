@@ -7,8 +7,8 @@ const useAreaChartCountries = () => {
   const [areaChartData, setAreaChartData] = useState([]);
   const [areaLoading, setAreaLoading] = useState(false);
 
-  const [independentCountriesSize, setIndependentCountriesSize] = useState(194);
-  const [totalCountriesSize, setTotalCountriesSize] = useState(250);
+  const [independentCountriesSize, setIndependentCountriesSize] = useState(null);
+  const [totalCountriesSize, setTotalCountriesSize] = useState(null);
   const [donutLoading, setDonutLoading] = useState(false);
 
   const countriesCollection = collection(db, "countries");

@@ -6,7 +6,7 @@ import PageLoading from "./components/ui/PageLoading/PageLoading";
 function App() {
   return (
     <Suspense fallback={<PageLoading />}>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} /> 
     </Suspense>
   );
 }
