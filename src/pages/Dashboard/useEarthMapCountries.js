@@ -47,7 +47,7 @@ const useEarthMapCountries = () => {
         toast.error(error.message);
       }
     };
-    // getCheckedCountries();
+    getCheckedCountries();
   }, []);
 
   return {

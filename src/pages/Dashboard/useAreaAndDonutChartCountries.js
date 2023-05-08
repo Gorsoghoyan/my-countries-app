@@ -14,8 +14,8 @@ const useAreaChartCountries = () => {
   const countriesCollection = collection(db, "countries");
 
   useEffect(() => {
-    // getAreaChartData();
-    // getDonutChartData();
+    getAreaChartData();
+    getDonutChartData();
   }, []);
 
   async function getAreaChartData() {

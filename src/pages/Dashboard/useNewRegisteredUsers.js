@@ -37,7 +37,7 @@ const useNewRegisteredUsers = () => {
       }
     };
 
-    // !currentUser.permissions && getNewRegisteredUsers();
+    !currentUser.permissions && getNewRegisteredUsers();
   }, []);
 
   return {
