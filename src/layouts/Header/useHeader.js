@@ -12,7 +12,9 @@ const useHeader = () => {
   const [openDropDown, toggleDropDown] = useToggle(false);
 
   const inputRef = useRef(null);
+  
   const clickRef = useClickOutSide(() => toggleDropDown(false));
+
   const { location, placeholder, value, inputClose } = useSelector(selectInput);
   const currentUser = useSelector(selectCurrentUser);
   const sidebarOpen = useSelector(selectSideBarOpen); 
