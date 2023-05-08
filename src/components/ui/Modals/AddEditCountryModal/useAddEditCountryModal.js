@@ -51,7 +51,7 @@ const useAddEditCountryModal = (type, ref) => {
 
   useEffect(() => {
     if (!editId) return;
-    console.log(editId);
+
     const getCountryById = async () => {
       try {
         const docSnap = await getDoc(doc(db, "countries", editId));
@@ -64,6 +64,7 @@ const useAddEditCountryModal = (type, ref) => {
         toast.error(error.message);
       }
     };
+    
     getCountryById();
   }, [editId]);
 

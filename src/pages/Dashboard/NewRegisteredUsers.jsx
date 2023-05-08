@@ -10,7 +10,11 @@ import HorizontalItem from "./HorizontalItem";
 import s from "./styles.module.scss";
 
 function NewRegisteredUsers() {
-  const { error, loading, users } = useNewRegisteredUsers();
+  const { error, loading, users, currentUser } = useNewRegisteredUsers();
+
+  if (currentUser.permissions) {
+    return null;
+  } 
 
   return (
     <GridItem

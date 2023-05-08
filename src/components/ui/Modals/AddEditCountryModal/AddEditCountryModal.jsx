@@ -48,6 +48,7 @@ const AddEditCountryModal = forwardRef(({ type }, ref) => {
                   ? countryData.capital[0]
                   : countryData[input.name] || ""
             }
+            autoFocus={input.autoFocus}
             placeholder={input.placeholder}
             inpPlaceholder={input.inpPlaceholder}
             onChange={(e) => handleChange(e, input.special)}

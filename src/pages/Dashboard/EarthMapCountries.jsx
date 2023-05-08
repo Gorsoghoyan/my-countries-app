@@ -4,12 +4,17 @@ import ComponentLoading from "../../components/ui/ComponentLoading/ComponentLoad
 import useEarthMapCountries from "./useEarthMapCountries";
 import GridItem from "../../components/ui/GridItem/GridItem";
 import HorizontalItem from "./HorizontalItem";
+import s from "./styles.module.scss";
 
 function EarthMapCountries() {
   const { checkedCountries, theBiggestCountries, loading } = useEarthMapCountries();
 
   return (
-    <GridItem variant={"d-i-column"} bg={"d-i-bg-1"}>
+    <GridItem 
+      className={s.earthMapCountries}
+      variant={"d-i-column"} 
+      bg={"d-i-bg-1"}
+    >
       <HorizontalItem
         bgVariant={"v-1"}
         title={"Your checked countries"}

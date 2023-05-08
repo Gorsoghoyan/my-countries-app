@@ -44,6 +44,7 @@ const AddEditSubUserModal = forwardRef(({ type }, ref) => {
             name={input.name}
             variant={"modal"}
             value={userData[input.name]}
+            autoFocus={input.autoFocus}
             placeholder={input.placeholder}
             inpPlaceholder={input.inpPlaceholder}
             onChange={handleChange}

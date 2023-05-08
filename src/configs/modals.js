@@ -10,7 +10,7 @@ export const editCountryModal = {
 };
 
 export const countryInputs = [
-  { id: "_iasjd", type: "text", placeholder: "Country name", inpPlaceholder: "Enter country name", name: "name", special: "name" },
+  { id: "_iasjd", type: "text", placeholder: "Country name", inpPlaceholder: "Enter country name", name: "name", special: "name", autoFocus: true },
   { id: "_iasd3", type: "text", placeholder: "Capital", inpPlaceholder: "Enter capital name", name: "capital", special: "capital" },
   { id: "_i234r", type: "text", placeholder: "Region", inpPlaceholder: "Enter region name", name: "region" },
   { id: "_ghr3r4", type: "number", placeholder: "Area", inpPlaceholder: "Enter area size", name: "area" },
@@ -28,7 +28,7 @@ export const editSubUserModal = {
 };
 
 export const accountInputs = [
-  { id: "_iasjd", type: "text", placeholder: "Username", inpPlaceholder: "Enter username", name: "displayName" },
+  { id: "_iasjd", type: "text", placeholder: "Username", inpPlaceholder: "Enter username", name: "displayName", autoFocus: true },
   { id: "_i234r", type: "email", placeholder: "Email", inpPlaceholder: "Enter email address", name: "email" },
   { id: "_ghr3r4", type: "password", placeholder: "Password", inpPlaceholder: "Enter password", name: "password" },
 ];
