@@ -1,11 +1,11 @@
 import { 
+  LOGIN, 
+  REGISTER, 
   ACCOUNTS, 
   COUNTRIES, 
   DASHBOARD, 
-  FORGOT_PASSWORD, 
-  LOGIN, 
-  REGISTER, 
-  RESET_PASSWORD
+  RESET_PASSWORD,
+  FORGOT_PASSWORD
 } from "../utils/constants";
 
 import { createBrowserRouter } from "react-router-dom";

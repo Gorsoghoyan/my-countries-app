@@ -1,15 +1,10 @@
-import { 
-  FOOT_TEXT, 
-  REGISTER_TEXT, 
-  LEFT_PART, 
-  FORGOT_PASSWORD 
-} from "../../utils/constants";
-import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { FiLogIn } from "react-icons/fi";
+import { FOOT_TEXT, REGISTER_TEXT, LEFT_PART, FORGOT_PASSWORD } from "../../utils/constants";
 import { login, register } from "../../configs/auth";
-import AuthForm from "./AuthForm";
+import { FiLogIn } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { Fragment } from "react";
 import Logo from "../../components/ui/Logo/Logo";
+import AuthForm from "./AuthForm";
 import s from "./styles.module.scss";
 
 function Auth({ type }) {
@@ -38,10 +33,10 @@ function Auth({ type }) {
             <p className={s.registerText}>{REGISTER_TEXT}</p>
           </Fragment>
         )}
-        <AuthForm 
+        <AuthForm
           type={type}
-          inputs={current.inputs} 
-          initialData={current.initialData} 
+          inputs={current.inputs}
+          initialData={current.initialData}
           btnText={current.btnText}
           btnVariant={current.btnVariant}
         />
