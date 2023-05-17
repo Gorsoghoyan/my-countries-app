@@ -3,12 +3,10 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/router";
 import PageLoading from "./components/ui/PageLoading/PageLoading";
 
-function App() {
+export default function App() {
   return (
     <Suspense fallback={<PageLoading />}>
       <RouterProvider router={router} /> 
     </Suspense>
   );
 }
-
-export default App;
